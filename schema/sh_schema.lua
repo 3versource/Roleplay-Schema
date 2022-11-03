@@ -1,7 +1,7 @@
 
 Schema.name = "HL2 RP"
 Schema.author = "nebulous.cloud"
-Schema.description = "A schema based on Half-Life 2."
+Schema.description = "A schema forked from ixHL2RP."
 
 -- Include netstream
 ix.util.Include("libs/thirdparty/sh_netstream2.lua")
@@ -23,6 +23,7 @@ ix.util.Include("meta/sh_character.lua")
 ix.flag.Add("v", "Access to light blackmarket goods.")
 ix.flag.Add("V", "Access to heavy blackmarket goods.")
 
+ix.anim.SetModelClass("models/ma/hla/metropolice.mdl", "metrocop")
 ix.anim.SetModelClass("models/eliteghostcp.mdl", "metrocop")
 ix.anim.SetModelClass("models/eliteshockcp.mdl", "metrocop")
 ix.anim.SetModelClass("models/leet_police2.mdl", "metrocop")
@@ -162,7 +163,7 @@ do
 	CLASS.format = "%s broadcasts \"%s\""
 
 	function CLASS:CanSay(speaker, text)
-		if (speaker:Team() != FACTION_ADMIN) then
+		if (speaker:Team() ~= FACTION_ADMIN) then
 			speaker:NotifyLocalized("notAllowed")
 
 			return false

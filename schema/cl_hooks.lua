@@ -116,7 +116,7 @@ function Schema:PreDrawOpaqueRenderables()
 		return
 	end
 
-	if (self.LastViewEntity != viewEntity) then
+	if (self.LastViewEntity ~= viewEntity) then
 		if (IsValid(self.LastViewEntity)) then
 			self.LastViewEntity:SetNoDraw(false)
 		end
@@ -161,7 +161,7 @@ function Schema:BuildBusinessMenu(panel)
 	local bHasItems = false
 
 	for k, _ in pairs(ix.item.list) do
-		if (hook.Run("CanPlayerUseBusiness", LocalPlayer(), k) != false) then
+		if (hook.Run("CanPlayerUseBusiness", LocalPlayer(), k) ~= false) then
 			bHasItems = true
 
 			break

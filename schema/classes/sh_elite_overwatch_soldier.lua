@@ -1,6 +1,10 @@
 CLASS.name = "Elite Overwatch Soldier"
 CLASS.faction = FACTION_OTA
 CLASS.isDefault = false
+CLASS.canSeeWaypoints = true
+CLASS.canAddWaypoints = true
+CLASS.canRemoveWaypoints = true
+CLASS.canUpdateWaypoints = true
 
 function CLASS:OnSet(client)
 	local character = client:GetCharacter()

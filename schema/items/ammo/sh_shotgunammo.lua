@@ -1,5 +1,7 @@
-ITEM.name = "Shotgun Shells"
+ITEM.name = "Slug Cartridge"
 ITEM.model = "models/Items/BoxBuckshot.mdl"
-ITEM.ammo = "buckshot" -- type of the ammo
-ITEM.ammoAmount = 15 -- amount of the ammo
-ITEM.description = "A Box of %s Shotgun Shells"
+ITEM.ammo = "Buckshot"
+ITEM.ammoAmount = 20
+ITEM.description = "A cartridge of shotgun slugs."
+ITEM.classes = {CLASS_EMP, CLASS_EOW}
+ITEM.flag = "V"

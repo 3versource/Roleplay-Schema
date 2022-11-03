@@ -25,7 +25,7 @@ end
 function PANEL:AddLine(text, color, expireTime, ...)
 	if (#self.lines >= self.maxLines) then
 		for k, info in ipairs(self.lines) do
-			if (info.expireTime != 0) then
+			if (info.expireTime ~= 0) then
 				table.remove(self.lines, k)
 			end
 		end
@@ -41,7 +41,7 @@ function PANEL:AddLine(text, color, expireTime, ...)
 	self.lines[index] = {
 		text = "<:: " .. text,
 		color = color or color_white,
-		expireTime = (expireTime != 0 and (CurTime() + (expireTime or 8)) or 0),
+		expireTime = (expireTime ~= 0 and (CurTime() + (expireTime or 8)) or 0),
 		character = 1
 	}
 
@@ -68,7 +68,7 @@ function PANEL:Paint(width, height)
 	surface.SetFont(self.font)
 
 	for k, info in ipairs(self.lines) do
-		if (info.expireTime != 0 and CurTime() >= info.expireTime) then
+		if (info.expireTime ~= 0 and CurTime() >= info.expireTime) then
 			table.remove(self.lines, k)
 			continue
 		end

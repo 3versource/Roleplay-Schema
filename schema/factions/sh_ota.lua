@@ -1,11 +1,13 @@
 
 FACTION.name = "Overwatch Transhuman Arm"
 FACTION.description = "A transhuman Overwatch soldier produced by the Combine."
-FACTION.color = Color(150, 50, 50, 255)
+FACTION.color = Color(50, 100, 150)
 FACTION.pay = 40
-FACTION.models = {"models/combine_soldier.mdl"}
+FACTION.canGoUnconcious = true
+FACTION.models = {"models/jq/hlvr/characters/combine/grunt/combine_grunt_hlvr_npc.mdl"}
 FACTION.isDefault = false
 FACTION.isGloballyRecognized = true
+FACTION.canSeeWaypoints = true
 FACTION.runSounds = {[0] = "NPC_CombineS.RunFootstepLeft", [1] = "NPC_CombineS.RunFootstepRight"}
 
 function FACTION:OnCharacterCreated(client, character)
@@ -22,7 +24,9 @@ function FACTION:GetDefaultName(client)
 	return "OTA-ECHO.OWS-" .. Schema:ZeroNumber(math.random(1, 99999), 5), true
 end
 
-function FACTION:OnTransferred(character)
+function FACTION:OnTransfered(client)
+	local character = client:GetCharacter()
+
 	character:SetName(self:GetDefaultName())
 	character:SetModel(self.models[1])
 end

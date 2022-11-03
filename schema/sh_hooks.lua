@@ -1,6 +1,6 @@
 
 function Schema:CanPlayerUseBusiness(client, uniqueID)
-	if (client:Team() == FACTION_CITIZEN) then
+	if (client:Team() == FACTION_CITIZEN or FACTION_MPF or FACTION_ADMIN or FACTION_OTA) then
 		local itemTable = ix.item.list[uniqueID]
 
 		if (itemTable) then
@@ -20,12 +20,12 @@ end
 
 -- called when the client wants to view the combine data for the given target
 function Schema:CanPlayerViewData(client, target)
-	return client:IsCombine() and (!target:IsCombine() and target:Team() != FACTION_ADMIN)
+	return client:IsCombine() and (!target:IsCombine() and target:Team() ~= FACTION_ADMIN)
 end
 
 -- called when the client wants to edit the combine data for the given target
 function Schema:CanPlayerEditData(client, target)
-	return client:IsCombine() and (!target:IsCombine() and target:Team() != FACTION_ADMIN)
+	return client:IsCombine() and (!target:IsCombine() and target:Team() ~= FACTION_ADMIN)
 end
 
 function Schema:CanPlayerViewObjectives(client)
@@ -40,7 +40,7 @@ function Schema:CanPlayerEditObjectives(client)
 	local bCanEdit = false
 	local name = client:GetCharacter():GetName()
 
-	for k, v in ipairs({"OfC", "EpU", "DvL", "SeC"}) do
+	for k, v in ipairs({"OfC", "EpU", "DvL", "SeC", "SqL", "WATCHER"}) do
 		if (self:IsCombineRank(name, v)) then
 			bCanEdit = true
 			break

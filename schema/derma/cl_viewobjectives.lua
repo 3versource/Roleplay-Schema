@@ -75,7 +75,7 @@ function PANEL:CommitChanges()
 	local text = string.Trim(self.textEntry:GetValue():sub(1, 2000))
 
 	-- only update if there's something different so we can preserve the last editor if nothing changed
-	if (self.oldText != text) then
+	if (self.oldText ~= text) then
 		netstream.Start("ViewObjectivesUpdate", text)
 		Schema:AddCombineDisplayMessage("@cViewObjectivesUpdate")
 	end

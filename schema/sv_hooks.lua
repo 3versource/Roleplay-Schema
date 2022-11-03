@@ -1,3 +1,12 @@
+local combineDeathSounds = {"vj_hlr/hl2b_npc/metropolice/die1.wav",
+	"vj_hlr/hl2b_npc/metropolice/die2.wav", "vj_hlr/hl2b_npc/metropolice/die3.wav",
+	"vj_hlr/hl2b_npc/metropolice/die4.wav", "vj_hlr/hl2b_npc/metropolice/fire_scream1.wav",
+	"vj_hlr/hl2b_npc/metropolice/fire_scream2.wav", "vj_hlr/hl2b_npc/metropolice/fire_scream3.wav"}
+
+local combinePainSounds = {"vj_hlr/hl2b_npc/metropolice/knockout1.wav",
+	"vj_hlr/hl2b_npc/metropolice/knockout2.wav", "vj_hlr/hl2b_npc/metropolice/knockout3.wav",
+	"vj_hlr/hl2b_npc/metropolice/pain1.wav", "vj_hlr/hl2b_npc/metropolice/pain2.wav",
+	"vj_hlr/hl2b_npc/metropolice/pain3.wav", "vj_hlr/hl2b_npc/metropolice/pain4.wav"}
 
 function Schema:LoadData()
 	self:LoadRationDispensers()
@@ -80,8 +89,6 @@ function Schema:PostPlayerLoadout(client)
 			client.ixScanner:SetHealth(client:Health())
 			client.ixScanner:SetMaxHealth(client:GetMaxHealth())
 			client:StripWeapons()
-		else
-			client:SetArmor(self:IsCombineRank(client:Name(), "RCT") and 50 or 100)
 		end
 
 		local factionTable = ix.faction.Get(client:Team())
@@ -181,7 +188,12 @@ end
 
 function Schema:PlayerHurt(client, attacker, health, damage)
 	if (health <= 0) then
+		client.ragdollCooldown = 0
 		return
+	elseif health <= 15 and ((client.ragdollCooldown or 0) < CurTime()) then
+		client:SetRagdolled(true, 30)
+		client:ChatNotify("Your vision darkens and you collapse from blood loss.")
+		client.ragdollCooldown = CurTime() + 60
 	end
 
 	if (client:IsCombine() and (client.ixTraumaCooldown or 0) < CurTime()) then
@@ -197,7 +209,16 @@ function Schema:PlayerHurt(client, attacker, health, damage)
 			client:AddCombineDisplayMessage("@cDroppingVitals", Color(255, 0, 0, 255))
 		end
 
-		client.ixTraumaCooldown = CurTime() + 15
+		client.ixTraumaCooldown = CurTime() + 10
+
+		if !client:GetNetVar("IsBiosignalGone") then
+			local location = client:GetArea() != "" and client:GetArea() or "unknown location"
+			local digits = string.match(client:Name(), "%d%d%d%d?%d?") or 0
+
+			-- Alert all other units.
+			Schema:AddCombineDisplayMessage("Downloading trauma packet...", Color(255, 255, 255, 255))
+			Schema:AddCombineDisplayMessage("ALERT! Vital signs dropping for protection team unit " .. digits .. " at " .. location .. "...", Color(255, 255, 0, 255))
+		end
 	end
 end
 
@@ -211,7 +232,7 @@ end
 
 function Schema:GetPlayerPainSound(client)
 	if (client:IsCombine()) then
-		local sound = "NPC_MetroPolice.Pain"
+		local sound = combinePainSounds[math.random(1,7)]
 
 		if (Schema:IsCombineRank(client:Name(), "SCN")) then
 			sound = "NPC_CScanner.Pain"
@@ -225,7 +246,7 @@ end
 
 function Schema:GetPlayerDeathSound(client)
 	if (client:IsCombine()) then
-		local sound = "NPC_MetroPolice.Die"
+		local sound = combineDeathSounds[math.random(1,7)]
 
 		if (Schema:IsCombineRank(client:Name(), "SCN")) then
 			sound = "NPC_CScanner.Die"

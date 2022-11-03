@@ -200,3 +200,24 @@ do
 
 	ix.command.Add("CharSearch", COMMAND)
 end
+
+ix.command.Add("doorkick", {
+	description = "Kicks the door that you're looking at.",
+	OnRun = function(self, client)
+		if client:Team()==FACTION_MPF or client:Team()==FACTION_OTA  then
+			local trace = client:GetEyeTraceNoCursor()
+			if trace.Entity:GetClass() =="prop_door_rotating" then
+				client:ForceSequence("kickdoorbaton")
+				timer.Simple(1, function()
+					trace.Entity:EmitSound("physics/wood/wood_plank_break1.wav",90)
+					trace.Entity:Fire("Unlock")
+					trace.Entity:Fire("Open")
+				end)
+			else
+				client:Notify("You are not currently looking at a valid door.")
+			end
+		else
+			client:Notify("Your faction cannot do this command.")
+		end
+	end
+})

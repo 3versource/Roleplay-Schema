@@ -1,9 +1,9 @@
 ITEM.name = "Crowbar"
-ITEM.description = "A slightly rusty looking crowbar."
+ITEM.description = "A piece of cold steel."
 ITEM.model = "models/weapons/w_crowbar.mdl"
 ITEM.class = "weapon_crowbar"
 ITEM.weaponCategory = "melee"
-ITEM.flag = "v"
+ITEM.flag = "m"
 ITEM.width = 2
 ITEM.height = 1
 ITEM.iconCam = {
