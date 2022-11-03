@@ -1,6 +1,5 @@
 ITEM.name = "Better Outfits"
 ITEM.description = "A not-so-trash outfit base without PAC support."
-ITEM.base = "base_newoutfithandler"
 ITEM.category = "Outfit"
 ITEM.model = "models/Gibs/HGIBS.mdl"
 ITEM.width = 1

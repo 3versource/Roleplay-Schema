@@ -1,3 +1,3 @@
-ITEM.name = "indepitembase"
+ITEM.name = "independentitems"
 ITEM.description = "Independent Item Base"
-ITEM.base = "base_indepitembase"
+-- items that are just items

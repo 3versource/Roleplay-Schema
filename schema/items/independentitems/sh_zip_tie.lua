@@ -3,6 +3,7 @@ ITEM.name = "Zip Tie"
 ITEM.description = "An orange zip-tie used to restrict people."
 ITEM.model = "models/items/crossbowrounds.mdl"
 ITEM.factions = {FACTION_MPF, FACTION_OTA}
+ITEM.category = "Tools"
 ITEM.functions.Use = {
 	OnRun = function(itemTable)
 		local client = itemTable.player

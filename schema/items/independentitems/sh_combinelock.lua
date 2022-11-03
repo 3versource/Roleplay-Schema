@@ -9,6 +9,7 @@ ITEM.iconCam = {
 	ang = Angle(0, 270, 0),
 	fov = 25.29
 }
+ITEM.category = "Tools"
 
 ITEM.functions.Place = {
 	OnRun = function(itemTable)
