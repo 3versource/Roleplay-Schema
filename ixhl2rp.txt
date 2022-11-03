@@ -1,7 +1,7 @@
-"ixhl2rp"
+"ixrps"
 {
 	"base"		"helix"
-	"title"		"HL2 RP"
+	"title"		"Roleplay Schema"
 	"author"	"nebulous.cloud"
 	"category"	"rp"
 	"menusystem" "1"
