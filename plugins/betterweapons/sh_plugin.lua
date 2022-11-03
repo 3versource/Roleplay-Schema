@@ -1,22 +1,25 @@
 local PLUGIN = PLUGIN
 PLUGIN.name = 'Auto Ammo Loader'
 PLUGIN.author = 'OctraSource'
-PLUGIN.description = 'Automatically loads ammo into your gun if you have the correct ammo for it.'
+PLUGIN.description = "Adds multiple weapons with unloading support and ammunition that is auto-loaded upon pressing the reload key."
 
 if (SERVER) then
-    function PLUGIN:EntityFireBullets(entity)
-        if entity:IsPlayer() then
--- if the entity is a player and fired a gun (because you can only fire a gun if you're alive)
-            local weapon = entity:GetActiveWeapon() -- store their active weapon
-            local ammoName = game.GetAmmoName(weapon:GetPrimaryAmmoType()) -- store the ammo type of that weapon
-            if (weapon:Clip1() == 0 and entity:GetAmmoCount(ammoName) == 0) then
-                for k, v in pairs(entity:GetCharacter():GetInventory():GetItems()) do
-                    if v.isAmmo and v.ammo == ammoName then
-                        entity:SetAmmo(v:GetData("rounds", v.ammoAmount) + entity:GetAmmoCount(ammoName), ammoName)
+    function Schema:KeyPress(client, key)
+        -- 8192 is the bind for +reload
+        if key == 8192 then
+            local weapon = client:GetActiveWeapon()
+            local ammoType = game.GetAmmoName(weapon:GetPrimaryAmmoType())
+            -- if the ammo isn't null or has no ammo value (hands, melees)
+            if ammoType and weapon:Clip1() ~= -1 and client:GetAmmoCount(ammoType) <= 1 and weapon:Clip1() <= 1 then
+                local items = client:GetCharacter():GetInv():GetItems() -- returns a table of the player's items to go through
+	            -- go through the player's entire inventory,
+	            for k, v in pairs(items) do
+                    if v.ammo == ammoType then
+                        client:SetAmmo(v:GetData("rounds", v.ammoAmount) + client:GetAmmoCount(ammoType), ammoType)
                         v:Remove()
                         break
                     end
-                end
+	            end
             end
         end
     end
