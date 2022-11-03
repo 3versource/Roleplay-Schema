@@ -1,8 +1,0 @@
-ITEM.name = "UU Potato"
-ITEM.base = "foodBase"
-ITEM.description = "A round UU-branded potato."
-ITEM.model = "models/bioshockinfinite/hext_potato.mdl"
-ITEM.category = "Food"
-
-ITEM.restFood = 35
-ITEM.sound = "player/footsteps/dirt1.wav"
