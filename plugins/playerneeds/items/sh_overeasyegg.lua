@@ -1,4 +1,5 @@
 ITEM.name = "Egg"
+ITEM.base = "foodBase"
 ITEM.description = "An over-easy done egg."
 ITEM.model = "models/foodnhouseholditems/egg.mdl"
 ITEM.category = "Food"

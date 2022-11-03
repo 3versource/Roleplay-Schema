@@ -1,4 +1,5 @@
 ITEM.name = "Kinder Egg"
+ITEM.base = "foodBase"
 ITEM.description = "A Kinder chocolate egg. Its center is a delicious hazelnut chocolate."
 ITEM.model = "models/foodnhouseholditems/kindersurprise.mdl"
 ITEM.category = "Food"

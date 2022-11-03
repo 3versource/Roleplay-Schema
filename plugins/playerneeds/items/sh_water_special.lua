@@ -1,4 +1,5 @@
 ITEM.name = "UU Flavored Water Can"
+ITEM.base = "drinksBase"
 ITEM.description = "A UU can of apple-flavored water."
 ITEM.model = "models/props_lunk/popcan01a.mdl"
 ITEM.category = "Drink"

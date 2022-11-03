@@ -1,4 +1,5 @@
 ITEM.name = "Whole Grain Loaf"
+ITEM.base = "foodBase"
 ITEM.description = "A loaf of bread."
 ITEM.model = "models/foodnhouseholditems/bread_loaf.mdl"
 ITEM.category = "Food"

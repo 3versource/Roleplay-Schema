@@ -1,4 +1,5 @@
 ITEM.name = "Red Grapes"
+ITEM.base = "foodBase"
 ITEM.description = "A bundle of Catawba grapes."
 ITEM.model = "models/foodnhouseholditems/grapes2.mdl"
 ITEM.category = "Food"

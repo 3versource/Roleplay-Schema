@@ -1,4 +1,5 @@
 ITEM.name = "Sardines"
+ITEM.base = "foodBase"
 ITEM.description = "A can of many sardines layered over one another."
 ITEM.model = "models/bioshockinfinite/cardine_can_open.mdl"
 ITEM.category = "Food"

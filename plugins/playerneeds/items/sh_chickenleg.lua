@@ -1,4 +1,5 @@
 ITEM.name = "Chicken Nugget"
+ITEM.base = "foodBase"
 ITEM.description = "A chicken nugget. Quite greasy."
 ITEM.model = "models/foodnhouseholditems/mcdfriedchickenleg.mdl"
 ITEM.category = "Food"

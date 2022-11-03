@@ -1,4 +1,5 @@
 ITEM.name = "UU Pear"
+ITEM.base = "foodBase"
 ITEM.description = "A green Union-branded pear."
 ITEM.model = "models/bioshockinfinite/hext_pear.mdl"
 ITEM.category = "Food"

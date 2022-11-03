@@ -1,4 +1,5 @@
 ITEM.name = "Choco Rings"
+ITEM.base = "foodBase"
 ITEM.description = "A box of Choco Rings cereal."
 ITEM.model = "models/foodnhouseholditems/chocorings.mdl"
 ITEM.category = "Food"

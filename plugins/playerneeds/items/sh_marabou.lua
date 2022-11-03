@@ -1,4 +1,5 @@
 ITEM.name = "Marabou"
+ITEM.base = "foodBase"
 ITEM.description = "A bar of Marabou chocolate."
 ITEM.model = "models/foodnhouseholditems/marabou1.mdl"
 ITEM.category = "Food"

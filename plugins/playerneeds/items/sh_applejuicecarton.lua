@@ -1,4 +1,5 @@
 ITEM.name = "Apple Juice"
+ITEM.base = "drinksBase"
 ITEM.description = "A carton of apple juice."
 ITEM.model = "models/foodnhouseholditems/juice2.mdl"
 ITEM.category = "Drink"

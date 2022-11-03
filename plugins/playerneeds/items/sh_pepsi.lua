@@ -1,4 +1,5 @@
 ITEM.name = "Pepsi"
+ITEM.base = "drinksBase"
 ITEM.description = "A can of Pepsi."
 ITEM.model = "models/foodnhouseholditems/sodacan04.mdl"
 ITEM.category = "Drink"

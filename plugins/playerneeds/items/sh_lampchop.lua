@@ -1,4 +1,5 @@
 ITEM.name = "Lamb Chop"
+ITEM.base = "foodBase"
 ITEM.description = "A juicy lamp chop on a bone."
 ITEM.model = "models/foodnhouseholditems/meat4.mdl"
 ITEM.category = "Food"

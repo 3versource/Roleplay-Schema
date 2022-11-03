@@ -1,4 +1,5 @@
 ITEM.name = "UU Orange"
+ITEM.base = "foodBase"
 ITEM.description = "An orange Union-branded orange."
 ITEM.model = "models/bioshockinfinite/hext_orange.mdl"
 ITEM.category = "Food"

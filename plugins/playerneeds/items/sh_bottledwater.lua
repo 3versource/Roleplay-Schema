@@ -1,4 +1,5 @@
 ITEM.name = "Bottled Water"
+ITEM.base = "drinksBase"
 ITEM.description = "A plastic bottle of purified water."
 ITEM.model = "models/ug_imports/drugmod/water_bottle.mdl"
 ITEM.category = "Drink"

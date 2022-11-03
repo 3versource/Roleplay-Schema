@@ -1,4 +1,5 @@
 ITEM.name = "Talloires Champagne"
+ITEM.base = "drinksBase"
 ITEM.description = "A bottle of champagne branded by Talloires."
 ITEM.model = "models/foodnhouseholditems/champagne3.mdl"
 ITEM.category = "Drink"

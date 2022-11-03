@@ -1,4 +1,5 @@
 ITEM.name = "Leek"
+ITEM.base = "foodBase"
 ITEM.description = "An onion-cellery-textured vegetable."
 ITEM.model = "models/foodnhouseholditems/leek.mdl"
 ITEM.category = "Food"

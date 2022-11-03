@@ -1,4 +1,5 @@
 ITEM.name = "Purple Cheese Drink"
+ITEM.base = "drinksBase"
 ITEM.description = "A can of the nebulous Purple Cheese Drink. What an ambiguous name."
 ITEM.model = "models/props_cunk/popcan01a.mdl"
 ITEM.category = "Drink"

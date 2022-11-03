@@ -1,4 +1,5 @@
 ITEM.name = "Glazed Donut"
+ITEM.base = "foodBase"
 ITEM.description = "A glazed donut."
 ITEM.model = "models/foodnhouseholditems/donut.mdl"
 ITEM.category = "Food"

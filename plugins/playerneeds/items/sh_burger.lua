@@ -1,4 +1,5 @@
 ITEM.name = "Burger"
+ITEM.base = "foodBase"
 ITEM.description = "A burger with lettuce, tomatos, and beef."
 ITEM.model = "models/foodnhouseholditems/burgergtaiv.mdl"
 ITEM.category = "Food"

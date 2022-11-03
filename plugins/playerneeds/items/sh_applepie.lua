@@ -1,4 +1,5 @@
 ITEM.name = "Apple Pie"
+ITEM.base = "foodBase"
 ITEM.description = "An apple pie."
 ITEM.model = "models/foodnhouseholditems/pie.mdl"
 ITEM.category = "Food"

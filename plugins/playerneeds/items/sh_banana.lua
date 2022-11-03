@@ -1,4 +1,5 @@
 ITEM.name = "Banana"
+ITEM.base = "foodBase"
 ITEM.description = "A simple yellow banana."
 ITEM.model = "models/foodnhouseholditems/bananna.mdl"
 ITEM.category = "Food"

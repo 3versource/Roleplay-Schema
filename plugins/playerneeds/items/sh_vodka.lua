@@ -1,4 +1,5 @@
 ITEM.name = "Vodka"
+ITEM.base = "drinksBase"
 ITEM.description = "A bottle of vodka. Слава Україні!"
 ITEM.model = "models/ug_imports/stalker/food/cossacks_vodka.mdl"
 ITEM.category = "Drink"

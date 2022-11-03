@@ -1,4 +1,5 @@
 ITEM.name = "Melon Slice"
+ITEM.base = "foodBase"
 ITEM.description = "A watery melon slice."
 ITEM.model = "models/foodnhouseholditems/watermelon_slice.mdl"
 ITEM.category = "Food"

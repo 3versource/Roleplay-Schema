@@ -1,4 +1,5 @@
 ITEM.name = "Beer"
+ITEM.base = "drinksBase"
 ITEM.description = "An unknown brand of beer."
 ITEM.model = "models/props_junk/GlassBottle01a.mdl"
 ITEM.category = "Drink"

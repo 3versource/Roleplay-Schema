@@ -1,4 +1,5 @@
 ITEM.name = "Pineapple"
+ITEM.base = "foodBase"
 ITEM.description = "A large pineapple, not from the sea."
 ITEM.model = "models/foodnhouseholditems/pineapple.mdl"
 ITEM.category = "Food"

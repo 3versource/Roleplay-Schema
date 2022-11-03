@@ -1,4 +1,5 @@
 ITEM.name = "Chocolate Cake"
+ITEM.base = "foodBase"
 ITEM.description = "A slice of chocolate cake. It's covered with frosting and candles."
 ITEM.model = "models/foodnhouseholditems/cakepiece.mdl"
 ITEM.category = "Food"

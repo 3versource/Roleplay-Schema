@@ -1,4 +1,5 @@
 ITEM.name = "UU Cheddar Cheese Wheel"
+ITEM.base = "foodBase"
 ITEM.description = "A wheel of UU-branded cheddar cheese."
 ITEM.model = "models/bioshockinfinite/pound_cheese.mdl"
 ITEM.category = "Food"

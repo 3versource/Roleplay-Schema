@@ -1,4 +1,5 @@
 ITEM.name = "Coconut"
+ITEM.base = "foodBase"
 ITEM.description = "A brown and round coconut."
 ITEM.model = "models/foodnhouseholditems/coconut.mdl"
 ITEM.category = "Food"

@@ -1,4 +1,5 @@
 ITEM.name = "Sweetroll"
+ITEM.base = "foodBase"
 ITEM.description = "A sweetroll. Carefully protect it."
 ITEM.model = "models/foodnhouseholditems/sweetroll.mdl"
 ITEM.category = "Food"

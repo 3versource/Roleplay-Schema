@@ -1,4 +1,5 @@
 ITEM.name = "Turkey Sandwich"
+ITEM.base = "foodBase"
 ITEM.description = "A sandwich made of turkey, lettuce, tomato, and mayonnaise."
 ITEM.model = "models/foodnhouseholditems/sandwich.mdl"
 ITEM.category = "Food"

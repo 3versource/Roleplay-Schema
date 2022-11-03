@@ -1,4 +1,5 @@
 ITEM.name = "Pizza Slice"
+ITEM.base = "foodBase"
 ITEM.description = "A slice of peperoni pizza."
 ITEM.model = "models/foodnhouseholditems/pizzaslice.mdl"
 ITEM.category = "Food"

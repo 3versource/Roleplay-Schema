@@ -1,4 +1,5 @@
 ITEM.name = "Fish Filet"
+ITEM.base = "foodBase"
 ITEM.description = "A fish filet ready to eat."
 ITEM.model = "models/foodnhouseholditems/fishsteak.mdl"
 ITEM.category = "Food"

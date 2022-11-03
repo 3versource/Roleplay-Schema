@@ -1,4 +1,5 @@
 ITEM.name = "Citizen Ration"
+ITEM.base = "foodBase"
 ITEM.description = "A ration block wrapped by a citizen label."
 ITEM.model = "models/mres/consumables/tag_mre.mdl"
 ITEM.category = "Food"

@@ -1,4 +1,5 @@
 ITEM.name = "Doritos"
+ITEM.base = "foodBase"
 ITEM.description = "A bag of Dorito corn chips."
 ITEM.model = "models/foodnhouseholditems/chipsdoritos.mdl"
 ITEM.category = "Food"

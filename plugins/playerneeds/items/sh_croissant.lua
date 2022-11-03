@@ -1,4 +1,5 @@
 ITEM.name = "Croissant"
+ITEM.base = "foodBase"
 ITEM.description = "An unusually shaped pastry."
 ITEM.model = "models/foodnhouseholditems/croissant.mdl"
 ITEM.category = "Food"

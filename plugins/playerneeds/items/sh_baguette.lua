@@ -1,4 +1,5 @@
 ITEM.name = "Baguette"
+ITEM.base = "foodBase"
 ITEM.description = "A large baguette made with a true french touch."
 ITEM.model = "models/foodnhouseholditems/bagette.mdl"
 ITEM.width = 2

@@ -1,4 +1,5 @@
 ITEM.name = "Cheezits"
+ITEM.base = "foodBase"
 ITEM.description = "A bag of Cheezits."
 ITEM.model = "models/foodnhouseholditems/chipscheezit.mdl"
 ITEM.category = "Food"

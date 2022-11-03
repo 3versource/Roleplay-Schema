@@ -1,4 +1,5 @@
 ITEM.name = "Honey"
+ITEM.base = "foodBase"
 ITEM.description = "A jar of honey."
 ITEM.model = "models/foodnhouseholditems/honey_jar.mdl"
 ITEM.category = "Food"

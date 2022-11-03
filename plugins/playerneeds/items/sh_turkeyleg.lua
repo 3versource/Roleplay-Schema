@@ -1,4 +1,5 @@
 ITEM.name = "Turkey Leg"
+ITEM.base = "foodBase"
 ITEM.description = "A turkey leg."
 ITEM.model = "models/foodnhouseholditems/turkeyleg.mdl"
 ITEM.category = "Food"

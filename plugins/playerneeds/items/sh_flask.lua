@@ -1,4 +1,5 @@
 ITEM.name = "Flask"
+ITEM.base = "drinksBase"
 ITEM.description = "A green flask of water."
 ITEM.model = "models/ug_imports/zworld/flask.mdl"
 ITEM.category = "Drink"

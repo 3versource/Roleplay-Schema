@@ -1,4 +1,5 @@
 ITEM.name = "Clorox Bleach"
+ITEM.base = "drinksBase"
 ITEM.description = "A container of bleach branded by Clorox. It's said that you can alt+f4 your life with this."
 ITEM.model = "models/foodnhouseholditems/clorox.mdl"
 ITEM.category = "Drink"

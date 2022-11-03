@@ -1,4 +1,5 @@
 ITEM.name = "UU Peanuts"
+ITEM.base = "foodBase"
 ITEM.description = "A bag of UU-branded peanuts."
 ITEM.model = "models/bioshockinfinite/rag_of_peanuts.mdl"
 ITEM.category = "Food"

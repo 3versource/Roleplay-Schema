@@ -1,4 +1,5 @@
 ITEM.name = "Pickles"
+ITEM.base = "foodBase"
 ITEM.description = "A jar of pickles."
 ITEM.model = "models/foodnhouseholditems/picklejar.mdl"
 ITEM.category = "Food"

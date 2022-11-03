@@ -1,4 +1,5 @@
 ITEM.name = "Kellog's Cornflakes"
+ITEM.base = "foodBase"
 ITEM.description = "A box of cornflake cereal."
 ITEM.model = "models/foodnhouseholditems/kellogscornflakes.mdl"
 ITEM.category = "Food"

@@ -1,4 +1,5 @@
 ITEM.name = "Civil Protection Ration"
+ITEM.base = "foodBase"
 ITEM.description = "A ration block wrapped by a Civil Protection label."
 ITEM.model = "models/mres/consumables/zag_mre.mdl"
 ITEM.category = "Food"

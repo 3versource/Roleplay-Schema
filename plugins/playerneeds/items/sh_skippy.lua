@@ -1,4 +1,5 @@
 ITEM.name = "Skippy"
+ITEM.base = "foodBase"
 ITEM.description = "A jar of Skippy peanut butter."
 ITEM.model = "models/foodnhouseholditems/peanut_butter.mdl"
 ITEM.category = "Food"

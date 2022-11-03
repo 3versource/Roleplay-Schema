@@ -1,4 +1,5 @@
 ITEM.name = "UU Potato"
+ITEM.base = "foodBase"
 ITEM.description = "A round UU-branded potato."
 ITEM.model = "models/bioshockinfinite/hext_potato.mdl"
 ITEM.category = "Food"
