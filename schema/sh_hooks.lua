@@ -40,6 +40,7 @@ function Schema:CanPlayerEditObjectives(client)
 	local bCanEdit = false
 	local name = client:GetCharacter():GetName()
 
+	-- player must be a WATCHER unit in order to modify the objectives
 	for k, v in ipairs({"OfC", "EpU", "DvL", "SeC", "SqL", "WATCHER"}) do
 		if (self:IsCombineRank(name, v)) then
 			bCanEdit = true
