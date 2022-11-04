@@ -69,8 +69,6 @@ ITEM:Hook("drop", function(item)
 			owner.carryWeapons[item.weaponCategory] = nil
 			owner:EmitSound(item.useSound, 80)
 		end
-
-		item:RemovePAC(owner)
 	end
 end)
 
@@ -233,7 +231,6 @@ function ITEM:Unequip(client, bPlaySound, bRemoveItem)
 
 	client.carryWeapons[self.weaponCategory] = nil
 	self:SetData("equip", nil)
-	self:RemovePAC(client)
 
 	if (self.OnUnequipWeapon) then
 		self:OnUnequipWeapon(client, weapon)
@@ -299,8 +296,6 @@ function ITEM:OnRemoved()
 		if (IsValid(weapon)) then
 			weapon:Remove()
 		end
-
-		self:RemovePAC(owner)
 	end
 end
 
@@ -311,10 +306,6 @@ hook.Add("PlayerDeath", "ixStripClip", function(client)
 		if (v.isWeapon and v:GetData("equip")) then
 			v:SetData("ammo", nil)
 			v:SetData("equip", nil)
-
-			if (v.pacData) then
-				v:RemovePAC(client)
-			end
 		end
 	end
 end)
