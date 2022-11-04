@@ -6,7 +6,6 @@ ITEM.playermodelBodygroupAndVariants = {4, 1}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.playermodel = nil
 ITEM.isClothingItem = true
-ITEM.isBagItem = false
 ITEM.armor = nil
 ITEM.forModel = "models/ug/new/citizens"
 

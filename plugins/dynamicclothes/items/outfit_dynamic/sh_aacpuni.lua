@@ -6,7 +6,6 @@ ITEM.playermodelBodygroupAndVariants = nil
 ITEM.playermodelBodygroupChanges = 0
 ITEM.playermodel = "models/police.mdl"
 ITEM.isClothingItem = true
-ITEM.isBagItem = false
 ITEM.armor = nil
 ITEM.forModel = nil
 

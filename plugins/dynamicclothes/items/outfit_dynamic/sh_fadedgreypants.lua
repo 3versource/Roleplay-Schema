@@ -5,7 +5,6 @@ ITEM.model = "models/props_junk/garbage_bag001a.mdl"
 ITEM.playermodelBodygroupAndVariants = {2, 1}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.playermodel = nil
-ITEM.isBagItem = false
 ITEM.armor = nil
 ITEM.forModel = "models/ug/new/citizens"
 

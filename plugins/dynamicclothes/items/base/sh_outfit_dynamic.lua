@@ -33,7 +33,8 @@ ITEM.playermodel = nil
 -- string of the playermodel you are trying to change to
 
 ITEM.isClothingItem = true
-ITEM.isBagItem = false
+ITEM.invHeight = nil
+ITEM.invWidth = nil
 ITEM.armor = nil
 ITEM.isMPF = nil
 
@@ -187,7 +188,7 @@ function ITEM:OnUnequipped(player)
 		-- go through the player's entire inventory,
 		for k, v in pairs(items) do
 			-- if the selected item is a clothing item and is equipped, then
-			if v.isClothingItem and v:GetData("equip", true) then
+			if v.isClothingItem and v.id ~= self.id and v:GetData("equip", true) then
 				-- unequip that item
 				v:OnUnequipped()
 			end
@@ -197,7 +198,7 @@ function ITEM:OnUnequipped(player)
 		ply:SetModel(self:GetData("previousPlayermodel"))
 		-- remove the data on their previous playermodel
 		self:SetData("previousPlayermodel", nil)
-	end
+	end	
 
 	-- if the item is a bodygroup, then
 	if self.playermodelBodygroupChanges then
