@@ -35,6 +35,7 @@ ITEM.playermodel = nil
 ITEM.isClothingItem = true
 ITEM.isBagItem = false
 ITEM.armor = nil
+ITEM.isMPF = nil
 
 ITEM.forModel = nil
 /*
@@ -82,7 +83,8 @@ ITEM.functions.Equip = {
 		return false
 	end,
 	OnCanRun = function(item)
-		return (!IsValid(item.entity) and item:GetData("equip") ~= true)
+		-- return false if the item isn't valid and if the item is equipped and if the player is valid (do not show the equip button when the item is equipped or (and) when the player isn't valid)
+		return (!IsValid(item.entity) and item:GetData("equip") ~= true and IsValid(item.player))
 	end
 }
 
@@ -93,6 +95,9 @@ function ITEM:OnEquipped(justChange, initialPly)
 
 	-- changing without saving data about the player's model
 	if justChange then
+		if self.playermodel then
+			ply:SetModel(self.playermodel)
+		end
 		-- if there are bodygroup changes, then
 		if self.playermodelBodygroupAndVariants then
 			-- change the player's bodygroups
@@ -106,7 +111,8 @@ function ITEM:OnEquipped(justChange, initialPly)
 		local char = ply:GetCharacter() -- returns the player's character
 		local items = char:GetInv():GetItems() -- returns a table of the player's items to go through
 
-		if !(string.find(ply:GetModel(), self.forModel)) then
+
+		if self.forModel and !(string.find(ply:GetModel(), self.forModel)) then
 			ply:NotifyLocalized("You can't equip this clothing item.")
 			return
 		end
@@ -115,8 +121,8 @@ function ITEM:OnEquipped(justChange, initialPly)
 		for k, v in pairs(items) do
 			-- if the selected item is a clothing item and is equipped and is not the self item, then
 			if v.isClothingItem and v:GetData("equip") then
-				-- if the self item is a playermodel and if the selected item is too, then
-				if self.playermodel and v.playermodel then
+				-- if there is a playmodel change and if the selected item is a playermodel or is a bodygroup item, unequip it
+				if self.playermodel and (v.playermodel or v.playermodelBodygroupAndVariants) then
 					-- unequip the selected item to prevent conflictions
 					v:OnUnequipped(ply)
 				end
@@ -137,7 +143,6 @@ function ITEM:OnEquipped(justChange, initialPly)
 
 		-- if the item is a playermodel, then
 		if self.playermodel then
-			print("running playermodel check")
 			-- save the old playermodel
 			self:SetData("previousPlayermodel", ply:GetModel())
 			-- set the new playermodel
@@ -174,10 +179,20 @@ end
 -- unequips the clothing item specified
 function ITEM:OnUnequipped(player)
 	-- "self" refers to "item"
-	local ply = self.player or player
+	local ply = player or self.player
 
 	-- if the item is a playermodel, then
 	if self.playermodel then
+		local items = ply:GetCharacter():GetInv():GetItems() -- returns a table of the player's items to go through
+		-- go through the player's entire inventory,
+		for k, v in pairs(items) do
+			-- if the selected item is a clothing item and is equipped, then
+			if v.isClothingItem and v:GetData("equip", true) then
+				-- unequip that item
+				v:OnUnequipped()
+			end
+		end
+
 		-- set the player's model to their old model
 		ply:SetModel(self:GetData("previousPlayermodel"))
 		-- remove the data on their previous playermodel
@@ -199,9 +214,21 @@ function ITEM:OnUnequipped(player)
 		self:SetData("previousBodygroupsAndVariants", nil)
 	end
 
-	-- item is properly unequipped, set "unequip" data to false
+	-- item is properly unequipped, set "equip" data to false
 	self:SetData("equip", false)
 end
+
+function ITEM:CanTransfer(oldInv, newInv)
+	if newInv and self:GetData("equip") then
+		local ply = self:GetOwner()
+
+		ply:NotifyLocalized("You can't move an equipped clothing item.")
+
+		return false
+    end
+	return true
+end
+
 
 -- when the item is dropped, unequip it
 ITEM:Hook("drop", function(item)
