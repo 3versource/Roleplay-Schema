@@ -137,19 +137,6 @@ ITEM.functions.Unload = {
 	end
 }
 
-
-function ITEM:WearPAC(client)
-	if (ix.pac and self.pacData) then
-		client:AddPart(self.uniqueID, self)
-	end
-end
-
-function ITEM:RemovePAC(client)
-	if (ix.pac and self.pacData) then
-		client:RemovePart(self.uniqueID)
-	end
-end
-
 function ITEM:Equip(client, bNoSelect, bNoSound)
 	local items = client:GetCharacter():GetInventory():GetItems()
 
