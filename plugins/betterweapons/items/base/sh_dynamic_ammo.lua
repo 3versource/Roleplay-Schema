@@ -11,6 +11,9 @@ ITEM.ammoAmount = nil
 -- the description of the ammo
 ITEM.description = nil
 
+-- set this to TRUE if the ammo type is not magazine-based
+ITEM.isFed = false
+
 /*
 	the data point "rounds" will give you the amount of ammo inside an ammo item
 	modified when unloading ammo from a gun

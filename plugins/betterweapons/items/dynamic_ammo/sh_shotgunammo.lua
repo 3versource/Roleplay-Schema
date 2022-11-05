@@ -5,3 +5,4 @@ ITEM.ammoAmount = 20
 ITEM.description = "A cartridge of shotgun slugs."
 ITEM.classes = {CLASS_EMP, CLASS_EOW}
 ITEM.flag = "V"
+ITEM.isFed = true
