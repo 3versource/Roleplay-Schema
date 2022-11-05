@@ -1,12 +1,11 @@
 ITEM.name = "Civil Protection Uniform"
 ITEM.description = "A pair of heavy-duty kevlar pants."
-ITEM.category = "Clothes - Pants"
+ITEM.category = "Metropolice - Uniform"
 ITEM.model = "models/props_junk/garbage_bag001a.mdl"
 ITEM.playermodelBodygroupAndVariants = nil
 ITEM.playermodelBodygroupChanges = 0
 ITEM.playermodel = "models/police.mdl"
 ITEM.isClothingItem = true
-ITEM.armor = nil
 ITEM.forModel = nil
 
 /*

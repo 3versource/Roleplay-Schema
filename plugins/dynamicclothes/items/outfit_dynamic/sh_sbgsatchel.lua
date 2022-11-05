@@ -4,12 +4,10 @@ ITEM.category = "Clothes - Backpack"
 ITEM.model = "models/props_lab/box01a.mdl"
 ITEM.playermodelBodygroupAndVariants = {7, 1}
 ITEM.playermodelBodygroupChanges = 1
-ITEM.playermodel = nil
 ITEM.isClothingItem = true
 ITEM.isBag = true
 ITEM.invWidth = 3
 ITEM.invHeight = 2
-ITEM.armor = nil
 ITEM.forModel = "models/ug/new/citizens"
 
 /*

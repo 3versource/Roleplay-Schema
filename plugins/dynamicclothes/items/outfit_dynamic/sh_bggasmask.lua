@@ -4,9 +4,7 @@ ITEM.category = "Clothes - Mask"
 ITEM.model = "models/props_lab/box01a.mdl"
 ITEM.playermodelBodygroupAndVariants = {10, 4}
 ITEM.playermodelBodygroupChanges = 1
-ITEM.playermodel = nil
 ITEM.isClothingItem = true
-ITEM.armor = nil
 ITEM.forModel = "models/ug/new/citizens"
 
 /*

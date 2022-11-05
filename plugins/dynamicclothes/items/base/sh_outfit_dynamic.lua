@@ -33,11 +33,6 @@ ITEM.playermodel = nil
 -- string of the playermodel you are trying to change to
 
 ITEM.isClothingItem = true
-ITEM.invHeight = nil
-ITEM.invWidth = nil
-ITEM.armor = nil
-ITEM.isMPF = nil
-
 ITEM.forModel = nil
 /*
 	forModel must be one of the following:
@@ -85,7 +80,7 @@ ITEM.functions.Equip = {
 	end,
 	OnCanRun = function(item)
 		-- return false if the item isn't valid and if the item is equipped and if the player is valid (do not show the equip button when the item is equipped or (and) when the player isn't valid)
-		return (!IsValid(item.entity) and item:GetData("equip") ~= true and IsValid(item.player))
+		return (!IsValid(item.entity) and item:GetData("equip") ~= true and IsValid(item.player) and hook.Run("CanPlayerEquipItem", item.player, item) != false)
 	end
 }
 
