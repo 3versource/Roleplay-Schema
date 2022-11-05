@@ -65,39 +65,3 @@ if (SERVER) then
         end
     end
 end
-
--- -- equal to an item
--- function SearchForAmmo(client, weapon, ammoType, items)
---     local foundSomething = nil
---     for k, v in pairs(items) do
---         if v.ammo == ammoType and v.ammoAmount == v:GetData("rounds", v.ammoAmount) then
---             foundSomething = v
---         end
---     end
-    
---     -- if an item is found to have max ammo in it, then
---     if foundSomething then
---         -- if there a magazine in their inventory and it's the same ammo type as the gun,
---         local mag = weapon:Clip1()
---         -- set the player's current ammo to the value of the magazine in their inventory,
---         weapon:SetClip1(0)
---         client:SetAmmo(foundSomething:GetData("rounds", foundSomething.ammoAmount) + client:GetAmmoCount(ammoType), ammoType)
---         -- set that magazine to the player's old ammo count
---         foundSomething:SetData("rounds", mag)
---         return
---     end
-
---     -- if no item is found to have max ammo in it, then
---     for k, v in pairs(items) do
---         if v.ammo == ammoType then
---             -- if there a magazine in their inventory and it's the same ammo type as the gun,
---             local mag = weapon:Clip1()
---             -- set the player's current ammo to the value of the magazine in their inventory,
---             weapon:SetClip1(0)
---             client:SetAmmo(v:GetData("rounds", v.ammoAmount) + client:GetAmmoCount(ammoType), ammoType)
---             -- set that magazine to the player's old ammo count
---             v:SetData("rounds", mag)
---             break
---         end
---     end
--- end
