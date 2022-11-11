@@ -38,7 +38,7 @@ end
 ITEM.functions.Load = { -- sorry, for name order.
 	name = "Load",
 	tip = "equipTip",
-	icon = "icon16/add.png",
+	icon = "icon16/tab.png",
 	OnRun = function(item) -- if the player can run this, it is implied that the ammo type is correct for their weapon selected
 		-- set this magazine's ammo to the gun's ammo
 		-- set the gun's ammo to this magazine's ammo

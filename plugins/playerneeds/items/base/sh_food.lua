@@ -8,8 +8,8 @@ ITEM.restFood = 1
 ITEM.sound = "physics/flesh/flesh_squishy_impact_hard4.wav"
 
 ITEM.functions.eat = {
-	name = "Consume All",
-	icon = "icon16/heart.png",
+	name = "Eat All",
+	icon = "icon16/cake.png",
 	OnRun = function(item)
         -- lowercase "item" in variable calls
 		item.player:addHunger(item.restFood * (item:GetData("portions", item.portions) / item.portions))
@@ -18,7 +18,7 @@ ITEM.functions.eat = {
 }
 
 ITEM.functions.eatPortion = {
-	name = "Consume Portion",
+	name = "Eat Portion",
 	icon = "icon16/heart.png",
 	OnRun = function(item)
         -- lowercase "item" in variable calls

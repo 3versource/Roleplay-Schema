@@ -8,7 +8,7 @@ ITEM.restThirst = 1
 ITEM.sound = "npc/barnacle/barnacle_gulp2.wav"
 
 ITEM.functions.Drink = {
-	name = "Consume All",
+	name = "Drink All",
 	icon = "icon16/cup.png",
 	OnRun = function(item)
 		-- lowercase "item" in variable calls
@@ -18,7 +18,7 @@ ITEM.functions.Drink = {
 }
 
 ITEM.functions.drinkPortion = {
-	name = "Consume Portion",
+	name = "Drink Portion",
 	icon = "icon16/heart.png",
 	OnRun = function(item)
         -- lowercase "item" in variable calls

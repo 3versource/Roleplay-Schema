@@ -109,7 +109,7 @@ ITEM.functions.Equip = {
 ITEM.functions.Unload = {
 	name = "Unload",
 	tip = "equipTip",
-	icon = "icon16/add.png",
+	icon = "icon16/tab.png",
 	OnRun = function(item)
 		if(item.player:GetCharacter():GetInventory():FindEmptySlot(1, 1, false)) then
 			local weapon = item.player:GetActiveWeapon() -- store their active weapon
