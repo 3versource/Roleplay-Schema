@@ -5,6 +5,10 @@ ITEM.category = "Medical"
 ITEM.recovery = 1
 ITEM.sound = "items/medshot4.wav"
 
+local healMultiplier = 1 -- multipies the value below to modify how much more health is added 
+						 -- default: +20 more hp is healed with max medical efficiency
+local skillIncreaseThreshold = 20 -- max amount of health that can be present in order to gain an attribute point
+
 ITEM.functions.apply = {
 	name = "Apply",
 	icon = "icon16/pill.png",
@@ -12,12 +16,11 @@ ITEM.functions.apply = {
 		local ply = item.player
 		local char = ply:GetCharacter()
 
-		if ply:Health() < 25 then
-			char:UpdateAttrib("medefficiency", 1)
-		end
+		UpdateAttribute(ply, char)
+		HealTarget(ply, item.recovery, char)
 
-		ply:SetHealth(math.min(ply:Health() + item.recovery + ((char:GetAttribute("medefficiency") or  0) * .25), 100, ply:GetMaxHealth()))
 		ply:EmitSound(item.sound)
+		return true
 	end
 }
 
@@ -28,30 +31,58 @@ ITEM.functions.applyToTarget = {
 		local ply = item.player
 		local char = ply:GetCharacter()
 
-		local data = {}
-			data.start = ply:GetShootPos()
-			data.endpos = data.start + ply:GetAimVector() * 96
-			data.filter = ply
+		local target = AimTargetValid(ply)
 
-		local target = util.TraceLine(data).Entity
-
-		if IsValid(target) and target:IsPlayer() and target:GetCharacter() then
-
-			if target:Health() < 25 then
-				char:UpdateAttrib("medefficiency", 1)
-			end
-
-			target:SetHealth(math.min(target:Health() + item.recovery + ((char:GetAttribute("medefficiency") or  0) * .25), 100, target:GetMaxHealth()))
+		if target then
+			UpdateAttribute(target, ply)
+			HealTarget(target, item.recovery, char)
 			target:EmitSound(item.sound)
-
 			return true
 		end
-		
+
 		ply:NotifyLocalized("Invalid target.")
 		return false
 	end,
 	OnCanRun = function(item)
 		-- only runs when inside the player's inventory
-		return !IsValid(item.entity) and IsValid(item.player) and item.player:GetCharacter():GetInventory():GetItemByID(item.id)
+		return !IsValid(item.entity) and IsValid(item.player) and item.player:GetCharacter():GetInventory():GetItemByID(item.id) and AimTargetValid(item.player)
 	end
 }
+
+-- returns true if the player is looking at a character
+function AimTargetValid(ply)
+	local data = {}
+	data.start = ply:GetShootPos()
+	data.endpos = data.start + ply:GetAimVector() * 96
+	data.filter = ply
+
+	local target = util.TraceLine(data).Entity
+
+	if IsValid(target) and target:IsPlayer() and target:GetCharacter() then
+		return target
+	end
+
+	return false
+end
+
+/*
+	target: The player who's being healed
+	amount: The amount the target is being healed
+	healerCharacter: The healer's character
+*/
+function HealTarget(target, amount, healerCharacter)
+	local maxHP = target:GetMaxHealth()
+	local health = target:Health()
+	local healAmount = amount + ((healerCharacter:GetAttribute("medefficiency") or 0) * healMultiplier)
+	target:SetHealth(math.Clamp(health + healAmount, 0, maxHP))
+end
+
+/*
+	target: The player you're healing
+	healerCharacter: The character who's healing
+*/
+function UpdateAttribute(target, healerCharacter)
+	if target:Health() <= skillIncreaseThreshold then
+		healerCharacter:UpdateAttrib("medefficiency", 1)
+	end
+end
