@@ -1,2 +1,3 @@
-ATTRIBUTE.name = "Thirstiness Resistance"
-ATTRIBUTE.description = "Hypophagia lessens the need for food."
+ATTRIBUTE.name = "Hunger Resistance"
+ATTRIBUTE.description = "Lessens the need for food."
+ATTRIBUTE.maxValue = 30

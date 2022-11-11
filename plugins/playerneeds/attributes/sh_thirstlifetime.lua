@@ -1,2 +1,3 @@
-ATTRIBUTE.name = "Hungriness Resistance"
-ATTRIBUTE.description = "Hydrodipsia lessens the need for drink."
+ATTRIBUTE.name = "Thirst Resistance"
+ATTRIBUTE.description = "Lessens the need for drink."
+ATTRIBUTE.maxValue = 30
