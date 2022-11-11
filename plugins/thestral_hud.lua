@@ -72,7 +72,7 @@ if CLIENT then
             local stamina = ply:GetLocalVar("stm", 0)
 
             local hpbarchange = barW*  math.Clamp((hp / ply:GetMaxHealth()) , 0, 1 )
-            local armorbarchange = barW*  math.Clamp((armor / 100) , 0, 1 )
+            local armorbarchange = barW*  math.Clamp((armor / ply:GetMaxArmor()) , 0, 1 )
             local hungerbarchange =  barH * (hunger / 100)
             local thirstbarchange = barH * (thirst / 100)
             local staminabarchange = scrw*.04*  math.Clamp((stamina / 100) , 0, 1 )
