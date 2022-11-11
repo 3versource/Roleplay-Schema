@@ -49,6 +49,13 @@ ITEM.functions.applyToTarget = {
 	end
 }
 
+function ITEM:PopulateTooltip(tooltip)
+	local panel = tooltip:AddRowAfter("name", "portions")
+	panel:SetBackgroundColor(derma.GetColor("Success", tooltip))
+	panel:SetText("Recovers " .. self.recovery .. " Health")
+	panel:SizeToContents()
+end	
+
 -- returns true if the player is looking at a character
 function AimTargetValid(ply)
 	local data = {}
