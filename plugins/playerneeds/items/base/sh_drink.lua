@@ -33,3 +33,10 @@ ITEM.functions.drinkPortion = {
 		return false
 	end
 }
+
+function ITEM:PopulateTooltip(tooltip)
+	local panel = tooltip:AddRowAfter("name", "portions")
+	panel:SetBackgroundColor(derma.GetColor("Warning", tooltip))
+	panel:SetText("Portions: " .. (self:GetData("portions", self.portions)))
+	panel:SizeToContents()
+end
