@@ -33,6 +33,12 @@ ITEM.playermodel = nil
 -- string of the playermodel you are trying to change to
 
 ITEM.isClothingItem = true
+ITEM.armor = nil
+-- an integer value of the armor this item provides
+
+ITEM.mpf = nil
+-- the prefix of a metropolice name
+
 ITEM.forModel = nil
 /*
 	forModel must be one of the following:
@@ -60,7 +66,7 @@ ITEM.functions.EquipUn = { -- sorry, for name order.
 	tip = "equipTip",
 	icon = "icon16/cross.png",
 	OnRun = function(item)
-		item:OnUnequipped()
+		item:OnUnequipped(item.player)
 		return false
 	end,
 	OnCanRun = function(item)
@@ -75,7 +81,7 @@ ITEM.functions.Equip = {
 	tip = "equipTip",
 	icon = "icon16/tick.png",
 	OnRun = function(item)
-		item:OnEquipped(false)
+		item:OnEquipped(false, item.player)
 		return false
 	end,
 	OnCanRun = function(item)
@@ -85,14 +91,18 @@ ITEM.functions.Equip = {
 }
 
 -- equips the clothing item specified
-function ITEM:OnEquipped(justChange, initialPly)
+function ITEM:OnEquipped(justChange, player)
 	-- "self" refers to "item"
-	local ply = self.player or initialPly -- upon the hook being ran, self.player does not exist (because the item hasn't loaded yet)
+	local ply = player or self.player -- upon the hook being ran, self.player does not exist (because the item hasn't loaded yet)
 
 	-- changing without saving data about the player's model
 	if justChange then
+		if self.armor then
+			ply:SetArmor(self:GetData("armor", self.armor))
+		end
+
 		if self.playermodel then
-			ply:SetModel(self.playermodel)
+			ply:GetCharacter():SetModel(self.playermodel)
 		end
 		-- if there are bodygroup changes, then
 		if self.playermodelBodygroupAndVariants then
@@ -137,12 +147,40 @@ function ITEM:OnEquipped(justChange, initialPly)
 			end
 		end
 
+		-- if this item has armor, then
+		if self.armor then
+			-- set the player's armor to the stored armor data
+			ply:SetArmor(self:GetData("armor", self.armor))
+		end
+
+		-- if this item is an mpf item, then
+		if self.mpf then
+			-- store the player's character's name
+			self:SetData("prevName", char:GetName())
+			-- if there is no stored replacement name (prefix), then create a name
+			if self:GetData("prefix", nil) == nil then
+				-- search the player's inventory
+				self:SetData("prefix", self.mpf.."00404")
+				for k, v in pairs(items) do
+					-- if an ID is found, then
+					if v.name == "Universal Union Identification Card" then
+						-- set part of the player's name to that id number
+						self:SetData("prefix", self.mpf..v:GetData("id"))
+						break
+					end
+				end
+			end
+
+			-- set the player's name
+			char:SetName(self:GetData("prefix"))
+		end
+
 		-- if the item is a playermodel, then
 		if self.playermodel then
 			-- save the old playermodel
 			self:SetData("previousPlayermodel", ply:GetModel())
 			-- set the new playermodel
-			ply:SetModel(self.playermodel)
+			char:SetModel(self.playermodel)
 		end
 
 		-- if the item is a bodygroup, then
@@ -176,21 +214,31 @@ end
 function ITEM:OnUnequipped(player)
 	-- "self" refers to "item"
 	local ply = player or self.player
+	local char = ply:GetCharacter()
+
+	if self.mpf then
+		char:SetName(self:GetData("prevName")) -- set the player's name to their old name
+	end
+
+	if self.armor then
+		self:SetData("armor", ply:Armor())
+		ply:SetArmor(0)
+	end
 
 	-- if the item is a playermodel, then
 	if self.playermodel then
-		local items = ply:GetCharacter():GetInv():GetItems() -- returns a table of the player's items to go through
+		local items = char:GetInv():GetItems() -- returns a table of the player's items to go through
 		-- go through the player's entire inventory,
 		for k, v in pairs(items) do
 			-- if the selected item is a clothing item and is equipped, then
-			if v.isClothingItem and v.id ~= self.id and v:GetData("equip", true) then
+			if v.isClothingItem and v.id ~= self.id and v:GetData("equip", false) then
 				-- unequip that item
 				v:OnUnequipped()
 			end
 		end
 
 		-- set the player's model to their old model
-		ply:SetModel(self:GetData("previousPlayermodel"))
+		char:SetModel(self:GetData("previousPlayermodel"))
 		-- remove the data on their previous playermodel
 		self:SetData("previousPlayermodel", nil)
 	end	
@@ -225,6 +273,12 @@ function ITEM:CanTransfer(oldInv, newInv)
 	return true
 end
 
+function ITEM:OnSave()
+	if self.armor and self:GetData("equip") then
+		self:SetData("armor", self.player:Armor())
+	end
+end
+
 
 -- when the item is dropped, unequip it
 ITEM:Hook("drop", function(item)
@@ -239,7 +293,7 @@ hook.Add("PlayerLoadedCharacter", "equipClothes", function(client, character)
 	-- go through the player's entire inventory,
 	for k, v in pairs(items) do
 		-- if the selected item is a clothing item and is equipped, then
-		if v.isClothingItem and v:GetData("equip", true) then
+		if v.isClothingItem and v:GetData("equip", false) then
 			-- equip that item
 			v:OnEquipped(true, client)
 		end
