@@ -114,8 +114,7 @@ ITEM.functions.Unload = {
 		if(item.player:GetCharacter():GetInventory():FindEmptySlot(1, 1, false)) then
 			local weapon = item.player:GetActiveWeapon() -- store their active weapon
 
-			if (weapon:Clip1() != 0 and weapon:GetClass() == item.class) then 
-		    	local ammoName = game.GetAmmoName(weapon:GetPrimaryAmmoType()) -- store the ammo type of that weapon
+			if (weapon:Clip1() ~= 0 and weapon:GetClass() == item.class) then 
 				local ammoCount = weapon:Clip1()
 
 				item.player:GetCharacter():GetInventory():Add(item.usesAmmo, 1, {rounds = ammoCount})
@@ -130,10 +129,18 @@ ITEM.functions.Unload = {
 	OnCanRun = function(item)
 		local client = item.player
 
-		return !IsValid(item.entity) and IsValid(client) and item:GetData("equip") == true and
-			hook.Run("CanPlayerUnequipItem", client, item) != false and item.weaponCategory != "melee" and item.weaponCategory != "grenade"
+		return !IsValid(item.entity) and IsValid(client) and item:GetData("equip") == true and WeaponReadied(item) and
+			hook.Run("CanPlayerUnequipItem", client, item) ~= false and item.weaponCategory ~= "melee" and item.weaponCategory ~= "grenade"
 	end
 }
+
+function WeaponReadied(item)
+	local weapon = item.player:GetActiveWeapon()
+	if string.find(tostring(item.player:GetActiveWeapon()), item.class) and weapon:Clip1() > 0 then
+		return true
+	end
+	return false
+end
 
 function ITEM:Equip(client, bNoSelect, bNoSound)
 	local items = client:GetCharacter():GetInventory():GetItems()
