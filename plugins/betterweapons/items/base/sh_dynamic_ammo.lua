@@ -33,3 +33,36 @@ if (CLIENT) then
 		)
 	end
 end
+
+-- On player uneqipped the item, Removes a weapon from the player and keep the ammo in the item.
+ITEM.functions.Load = { -- sorry, for name order.
+	name = "Load",
+	tip = "equipTip",
+	icon = "icon16/add.png",
+	OnRun = function(item) -- if the player can run this, it is implied that the ammo type is correct for their weapon selected
+		-- set this magazine's ammo to the gun's ammo
+		-- set the gun's ammo to this magazine's ammo
+		local client = item.player
+		local weapon = client:GetActiveWeapon()
+		local newMagCount = weapon:Clip1()
+
+		weapon:SetClip1(0)
+		client:SetAmmo(item:GetData("rounds", item.ammoAmount), item.ammo)
+		if SERVER and newMagCount == 0 then
+			return true
+		elseif SERVER then
+			item:SetData("rounds", newMagCount)
+		end
+		return false
+	end,
+	OnCanRun = function(item)
+		return !IsValid(item.entity) and IsValid(item.player) and HasRightWeapon(item)
+	end
+}
+
+function HasRightWeapon(item)
+	if item.ammo == game.GetAmmoName(item.player:GetActiveWeapon():GetPrimaryAmmoType()) then
+		return true
+	end
+	return false
+end
