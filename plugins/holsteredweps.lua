@@ -1,6 +1,6 @@
 PLUGIN.name = "Holstered Weapons"
 PLUGIN.author = "OctraSource"
-PLUGIN.desc = "Shows equipped items on playermodels in the world."
+PLUGIN.description = "Shows equipped items on playermodels in the world."
 
 ix.config.Add("showHolsteredWeps", true,"Whether or not holstered weapons show on players.", nil, {
 	category = "Holstered Weapons"

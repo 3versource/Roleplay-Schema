@@ -46,6 +46,7 @@ ITEM.functions.applyToTarget = {
 
 			return true
 		end
+		
 		ply:NotifyLocalized("Invalid target.")
 		return false
 	end,

@@ -3,7 +3,7 @@ local PLUGIN = PLUGIN
 
 PLUGIN.name = "Perma Remove"
 PLUGIN.author = "alexgrist"
-PLUGIN.desc = "Allows staff to permanently remove map entities."
+PLUGIN.description = "Allows staff to permanently remove map entities."
 PLUGIN.license = [[
 This is free and unencumbered software released into the public domain.
 
