@@ -1,4 +1,4 @@
-ITEM.name = "Civil Protection Patrol Uniform"
+ITEM.name = "Civil Protection Dart Uniform"
 ITEM.description = "A pair of heavy-duty kevlar pants."
 ITEM.category = "Metropolice - Uniform"
 ITEM.model = "models/props_junk/garbage_bag001a.mdl"
@@ -7,8 +7,8 @@ ITEM.playermodelBodygroupChanges = 1
 ITEM.playermodel = "models/police.mdl"
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.mpf = "MPF-PTRL."
-ITEM.armor = 25
+ITEM.mpf = "MPF-DART."
+ITEM.armor = 10
 
 /*
 	forModel must be one of the following:
@@ -46,6 +46,7 @@ ITEM.armor = 25
 	tactical shit - 6
 	neck - 7
 */
+
 
 
 function ITEM:PopulateTooltip(tooltip)

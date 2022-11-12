@@ -1,14 +1,14 @@
-ITEM.name = "Civil Protection Patrol Uniform"
+ITEM.name = "Civil Protection Bastion Uniform"
 ITEM.description = "A pair of heavy-duty kevlar pants."
 ITEM.category = "Metropolice - Uniform"
 ITEM.model = "models/props_junk/garbage_bag001a.mdl"
-ITEM.playermodelBodygroupAndVariants = {3, 1}
-ITEM.playermodelBodygroupChanges = 1
+ITEM.playermodelBodygroupAndVariants = {3, 1, 2, 8, 6, 1}
+ITEM.playermodelBodygroupChanges = 3
 ITEM.playermodel = "models/police.mdl"
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.mpf = "MPF-PTRL."
-ITEM.armor = 25
+ITEM.mpf = "MPF-BASTION."
+ITEM.armor = 80
 
 /*
 	forModel must be one of the following:

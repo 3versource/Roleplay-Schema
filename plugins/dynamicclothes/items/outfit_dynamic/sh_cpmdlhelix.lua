@@ -1,13 +1,13 @@
-ITEM.name = "Civil Protection Patrol Uniform"
+ITEM.name = "Civil Protection Helix Uniform"
 ITEM.description = "A pair of heavy-duty kevlar pants."
 ITEM.category = "Metropolice - Uniform"
 ITEM.model = "models/props_junk/garbage_bag001a.mdl"
-ITEM.playermodelBodygroupAndVariants = {3, 1}
-ITEM.playermodelBodygroupChanges = 1
+ITEM.playermodelBodygroupAndVariants = {3, 1, 0, 1}
+ITEM.playermodelBodygroupChanges = 2
 ITEM.playermodel = "models/police.mdl"
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.mpf = "MPF-PTRL."
+ITEM.mpf = "MPF-HELIX."
 ITEM.armor = 25
 
 /*
@@ -46,6 +46,7 @@ ITEM.armor = 25
 	tactical shit - 6
 	neck - 7
 */
+
 
 
 function ITEM:PopulateTooltip(tooltip)
