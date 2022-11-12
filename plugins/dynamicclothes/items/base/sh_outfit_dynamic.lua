@@ -118,8 +118,12 @@ function ITEM:OnEquipped(justChange, player)
 		if self.playermodelBodygroupAndVariants then
 			-- change the player's bodygroups
 			for i = 1, (self.playermodelBodygroupChanges*2), 2 do
-				-- sets the player's model to the bodygroup specified
-				ply:SetBodygroup(self.playermodelBodygroupAndVariants[i], self.playermodelBodygroupAndVariants[i+1])
+				if self.playermodelBodygroupAndVariants[i] == 0 then
+					ply:SetSkin(self.playermodelBodygroupAndVariants[i+1])
+				else
+					-- sets the player's model to the bodygroup specified
+					ply:SetBodygroup(self.playermodelBodygroupAndVariants[i], self.playermodelBodygroupAndVariants[i+1])
+				end
 			end
 		end
 	else
@@ -202,14 +206,16 @@ function ITEM:OnEquipped(justChange, player)
 			for i = 1, (self.playermodelBodygroupChanges*2), 2 do
 				-- sets the 1st part of the pair equal to the bodygroup type's index
 				previousBodygroupsAndVariants[i] = self.playermodelBodygroupAndVariants[i]
-				-- sets the 2nd part of the pair equal to the bodygroup variant's index within the bodygroup type (1, 1 means set the torso to variant 1)
-				previousBodygroupsAndVariants[i+1] = ply:GetBodygroup(previousBodygroupsAndVariants[i])
-
-				-- print("saved "..previousBodygroupsAndVariants[i].." with it set to "..previousBodygroupsAndVariants[i+1])
-				-- print("setting "..self.playermodelBodygroupAndVariants[i].." to "..self.playermodelBodygroupAndVariants[i+1])
-
-				-- sets the player's model to the bodygroup specified
-				ply:SetBodygroup(self.playermodelBodygroupAndVariants[i], self.playermodelBodygroupAndVariants[i+1])
+				if self.playermodelBodygroupAndVariants[i] == 0 then
+					-- sets the 2nd part of the pair equal to the bodygroup variant's index within the bodygroup type (1, 1 means set the torso to variant 1)
+					previousBodygroupsAndVariants[i+1] = ply:GetSkin()
+					ply:SetSkin(self.playermodelBodygroupAndVariants[i+1])
+				else
+					-- sets the 2nd part of the pair equal to the bodygroup variant's index within the bodygroup type (1, 1 means set the torso to variant 1)
+					previousBodygroupsAndVariants[i+1] = ply:GetBodygroup(previousBodygroupsAndVariants[i])
+					-- sets the player's model to the bodygroup specified
+					ply:SetBodygroup(self.playermodelBodygroupAndVariants[i], self.playermodelBodygroupAndVariants[i+1])
+				end
 			end
 		-- saves the player's previous bodygroups and variants
 		self:SetData("previousBodygroupsAndVariants", previousBodygroupsAndVariants)
@@ -244,7 +250,11 @@ function ITEM:OnUnequipped(player)
 		*/
 		for i = 1, (self.playermodelBodygroupChanges*2), 2 do
 			-- set the bodygroup to the previous bodygroup and what its index was (1, 2 means set bodygroup 1 to variant 2)
-			ply:SetBodygroup(self:GetData("previousBodygroupsAndVariants")[i], self:GetData("previousBodygroupsAndVariants")[i+1])
+			if self:GetData("previousBodygroupsAndVariants")[i] == 0 then
+				ply:SetSkin(self:GetData("previousBodygroupsAndVariants")[i+1])
+			else
+				ply:SetBodygroup(self:GetData("previousBodygroupsAndVariants")[i], self:GetData("previousBodygroupsAndVariants")[i+1])
+			end
 		end
 		-- remove the data on their previous bodygroups
 		self:SetData("previousBodygroupsAndVariants", nil)
