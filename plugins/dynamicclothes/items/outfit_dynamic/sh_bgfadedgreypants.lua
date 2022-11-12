@@ -33,4 +33,12 @@ ITEM.forModel = "models/ug/new/citizens"
 	facialhair - 12
 
 	MPF playermodel layout:
+	skin - 0
+	manhack - 1
+	mask - 2
+	radio - 3
+	cloak/summka - 4
+	spine radio - 5
+	tactical shit - 6
+	neck - 7
 */
