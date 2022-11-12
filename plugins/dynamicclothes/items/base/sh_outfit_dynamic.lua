@@ -25,7 +25,16 @@ ITEM.playermodelBodygroupAndVariants = nil -- table of pairs (bodygroup, variant
 	facialhair - 12
 
 	MPF playermodel layout:
+	skin - 0
+	manhack - 1
+	mask - 2
+	radio - 3
+	cloak/summka - 4
+	spine radio - 5
+	tactical shit - 6
+	neck - 7
 */
+
 ITEM.playermodelBodygroupChanges = 0
 -- the amount of bodygroup changes an item will have (default = 0)
 
@@ -104,6 +113,7 @@ function ITEM:OnEquipped(justChange, player)
 		if self.playermodel then
 			ply:GetCharacter():SetModel(self.playermodel)
 		end
+
 		-- if there are bodygroup changes, then
 		if self.playermodelBodygroupAndVariants then
 			-- change the player's bodygroups
@@ -225,6 +235,21 @@ function ITEM:OnUnequipped(player)
 		ply:SetArmor(0)
 	end
 
+	-- if the item is a bodygroup, then
+	if self.playermodelBodygroupChanges then
+		/*
+			loop, starting at 1 and skipping every other number (goes like 1, 3, 5, 7, etc),
+			with the maximum limit being the amount of changes times 2
+			(allows the skipping to work and be able to save what bodygroup is set to what)
+		*/
+		for i = 1, (self.playermodelBodygroupChanges*2), 2 do
+			-- set the bodygroup to the previous bodygroup and what its index was (1, 2 means set bodygroup 1 to variant 2)
+			ply:SetBodygroup(self:GetData("previousBodygroupsAndVariants")[i], self:GetData("previousBodygroupsAndVariants")[i+1])
+		end
+		-- remove the data on their previous bodygroups
+		self:SetData("previousBodygroupsAndVariants", nil)
+	end
+
 	-- if the item is a playermodel, then
 	if self.playermodel then
 		local items = char:GetInv():GetItems() -- returns a table of the player's items to go through
@@ -242,21 +267,6 @@ function ITEM:OnUnequipped(player)
 		-- remove the data on their previous playermodel
 		self:SetData("previousPlayermodel", nil)
 	end	
-
-	-- if the item is a bodygroup, then
-	if self.playermodelBodygroupChanges then
-		/*
-			loop, starting at 1 and skipping every other number (goes like 1, 3, 5, 7, etc),
-			with the maximum limit being the amount of changes times 2
-			(allows the skipping to work and be able to save what bodygroup is set to what)
-		*/
-		for i = 1, (self.playermodelBodygroupChanges*2), 2 do
-			-- set the bodygroup to the previous bodygroup and what its index was (1, 2 means set bodygroup 1 to variant 2)
-			ply:SetBodygroup(self:GetData("previousBodygroupsAndVariants")[i], self:GetData("previousBodygroupsAndVariants")[i+1])
-		end
-		-- remove the data on their previous bodygroups
-		self:SetData("previousBodygroupsAndVariants", nil)
-	end
 
 	-- item is properly unequipped, set "equip" data to false
 	self:SetData("equip", false)
