@@ -4,7 +4,7 @@ PLUGIN.description = "Medical items that are affected by a medical attribute and
 
 local defaultPlayerHealth = 100
 
-function Schema:PlayerHurt(client, attacker, health)
+function Schema:PlayerHurt(client, attacker, health, damage)
     local char = client:GetCharacter()
     if health <= 10 then
         client:SetRagdolled(true, 30 - (char:GetAttribute("vitality") or 0))
@@ -13,6 +13,32 @@ function Schema:PlayerHurt(client, attacker, health)
     else
         char:UpdateAttrib("vitality", .005)
     end
+
+    -- pings combine players that a biosignal-activated player has been hurt
+    if (client:IsCombine() and (client.ixTraumaCooldown or 0) < CurTime()) then
+		local text = "External"
+
+		if (damage > 50) then
+			text = "Severe"
+		end
+
+		client:AddCombineDisplayMessage("@cTrauma", Color(255, 0, 0, 255), text)
+
+		if (health < 25) then
+			client:AddCombineDisplayMessage("@cDroppingVitals", Color(255, 0, 0, 255))
+		end
+
+		client.ixTraumaCooldown = CurTime() + 10
+
+		if !client:GetNetVar("IsBiosignalGone") then
+			local location = client:GetArea() != "" and client:GetArea() or "unknown location"
+			local digits = string.match(client:Name(), "%d%d%d%d?%d?") or 0
+
+			-- Alert all other units.
+			Schema:AddCombineDisplayMessage("Downloading trauma packet...", Color(255, 255, 255, 255))
+			Schema:AddCombineDisplayMessage("ALERT! Vital signs dropping for protection team unit " .. digits .. " at " .. location .. "...", Color(255, 255, 0, 255))
+		end
+	end
 end
 
 -- update the player's maximum health

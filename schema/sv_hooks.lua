@@ -186,32 +186,36 @@ function Schema:EntityTakeDamage(entity, dmgInfo)
 	end
 end
 
-function Schema:PlayerHurt(client, attacker, health, damage)
-	if (client:IsCombine() and (client.ixTraumaCooldown or 0) < CurTime()) then
-		local text = "External"
+-- removed because sh_plugin under betterMedical calls PlayerHurt
+-- function Schema:PlayerHurt(client, attacker, health, damage)
+	-- print("player hurt")
+	-- if (client:IsCombine() and (client.ixTraumaCooldown or 0) < CurTime()) then
+	-- 	local text = "External"
 
-		if (damage > 50) then
-			text = "Severe"
-		end
+	-- 	if (damage > 50) then
+	-- 		text = "Severe"
+	-- 	end
 
-		client:AddCombineDisplayMessage("@cTrauma", Color(255, 0, 0, 255), text)
+	-- 	client:AddCombineDisplayMessage("@cTrauma", Color(255, 0, 0, 255), text)
 
-		if (health < 25) then
-			client:AddCombineDisplayMessage("@cDroppingVitals", Color(255, 0, 0, 255))
-		end
+	-- 	if (health < 25) then
+	-- 		client:AddCombineDisplayMessage("@cDroppingVitals", Color(255, 0, 0, 255))
+	-- 	end
 
-		client.ixTraumaCooldown = CurTime() + 10
+	-- 	client.ixTraumaCooldown = CurTime() + 10
 
-		if !client:GetNetVar("IsBiosignalGone") then
-			local location = client:GetArea() != "" and client:GetArea() or "unknown location"
-			local digits = string.match(client:Name(), "%d%d%d%d?%d?") or 0
+	-- 	print(client:GetNetVar("IsBiosignalGone"))
+	-- 	if !client:GetNetVar("IsBiosignalGone") then
+	-- 		print("sending message")
+	-- 		local location = client:GetArea() != "" and client:GetArea() or "unknown location"
+	-- 		local digits = string.match(client:Name(), "%d%d%d%d?%d?") or 0
 
-			-- Alert all other units.
-			Schema:AddCombineDisplayMessage("Downloading trauma packet...", Color(255, 255, 255, 255))
-			Schema:AddCombineDisplayMessage("ALERT! Vital signs dropping for protection team unit " .. digits .. " at " .. location .. "...", Color(255, 255, 0, 255))
-		end
-	end
-end
+	-- 		-- Alert all other units.
+	-- 		Schema:AddCombineDisplayMessage("Downloading trauma packet...", Color(255, 255, 255, 255))
+	-- 		Schema:AddCombineDisplayMessage("ALERT! Vital signs dropping for protection team unit " .. digits .. " at " .. location .. "...", Color(255, 255, 0, 255))
+	-- 	end
+	-- end
+-- end
 
 function Schema:PlayerStaminaLost(client)
 	client:AddCombineDisplayMessage("@cStaminaLost", Color(255, 255, 0, 255))
