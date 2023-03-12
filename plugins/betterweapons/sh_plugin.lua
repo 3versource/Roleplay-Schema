@@ -12,7 +12,6 @@ if (SERVER) then
             -- if the ammo isn't null or has no ammo value (hands, melees)
             if ammoType and weapon:Clip1() ~= -1 and client:GetAmmoCount(ammoType) == 0 and ammoType ~= "Buckshot" then
                 local items = client:GetCharacter():GetInv():GetItems() -- returns a table of the player's items to go through 
-                -- if the gun has less than or equal to 1 bullet and the total ammo is less than or equal to one, then
                 if weapon:Clip1() < 1 then -- this implies that their gun is EMPTY and their current magazine SHOULD NOT BE STORED
 	                -- go through the player's entire inventory,
 	                for k, v in pairs(items) do
