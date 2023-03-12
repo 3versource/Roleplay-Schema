@@ -1,6 +1,6 @@
 
-Schema.name = "HL2 RP"
-Schema.author = "nebulous.cloud"
+Schema.name = "Roleplay Schema"
+Schema.author = "OctraSource and nebulous.cloud"
 Schema.description = "A schema forked from ixHL2RP."
 
 -- Include netstream

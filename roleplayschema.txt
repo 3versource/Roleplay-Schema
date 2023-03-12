@@ -2,7 +2,7 @@
 {
 	"base"		"helix"
 	"title"		"Roleplay Schema"
-	"author"	"nebulous.cloud"
+	"author"	"OctraSource and nebulous.cloud"
 	"category"	"rp"
 	"menusystem" "1"
 }
