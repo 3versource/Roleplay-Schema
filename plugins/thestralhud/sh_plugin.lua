@@ -1,7 +1,7 @@
 local PLUGIN = PLUGIN
 PLUGIN.name = "Thestral HUD"
-PLUGIN.author = "Jars"
-PLUGIN.description = "Modified by OctraSource"
+PLUGIN.author = "Jars and OctraSource"
+PLUGIN.description = "A simple HUD that displays the player's health, armor, stamina, hunger, and thirst."
 
 ix.option.Add("hideThestral", ix.type.bool, false, {
 	category = "Thestral HUD"
@@ -11,16 +11,16 @@ ix.option.Add("autoHideThestral", ix.type.bool, false, {
 	category = "Thestral HUD"
 })
 
-ix.option.Add("staminaDrainsThestral", ix.type.bool, false, {
-	category = "Thestral HUD"
-})
-
 ix.option.Add("healthColorThestral", ix.type.color, Color(255,75,66), {
 	category = "Thestral HUD"
 })
 
 ix.option.Add("armorColorThestral", ix.type.color, Color(0,0,128), {
 	category = "Thestral HUD"
+})
+
+ix.option.Add("hideArmorThestral", ix.type.bool, true, {
+    category = "Thestral HUD"
 })
 
 ix.option.Add("hungerColorThestral", ix.type.color, Color(56,46,28), {
@@ -95,7 +95,7 @@ if CLIENT then
 
             if ix.option.Get("autoHideThestral", false) then -- Hide automatically the HUD when bars are almost full
                 -- armor 
-                if armor > 0 then 
+                if armor > 0 and !ix.option.Get("hideArmorThestral") then 
                     draw.RoundedBox(8, scrw*(.006 + offsetHidden), scrh*.958, scrw*.062, scrh*.034, Color(0,0,0,200))
                     draw.RoundedBox(8, scrw*(.006 + offsetHidden + 0.001), scrh*.96, armorbarchange, scrh*.031, ix.option.Get("armorColorThestral", Color(0,0,128)))
                     draw.SimpleText(armor, "jars_hud_indicators", scrw*(.006 + offsetHidden + 0.035),scrh*.975, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -121,15 +121,9 @@ if CLIENT then
                     local estaminaOffset = 0
                     local estaminaText = 0
                     local estaminaIcon = 0
-                    if ix.option.Get("staminaDrainsThestral", false) then -- Check if user prefer the stamina bar on the right corner
-                        estaminaOffset = scrw - scrw*.050
-                        estaminaText = scrw - scrw*0.028
-                        estaminaIcon = estaminaOffset
-                    else
-                        estaminaOffset = scrw*(.007 + offsetHidden)
-                        estaminaText = scrw*(.007 + offsetHidden + 0.028)
-                        estaminaIcon = scrw*(.007 + offsetHidden + 0.003)
-                    end
+                    estaminaOffset = scrw*(.007 + offsetHidden)
+                    estaminaText = scrw*(.007 + offsetHidden + 0.028)
+                    estaminaIcon = scrw*(.007 + offsetHidden + 0.003)
             
                     -- stamina 
                     draw.RoundedBox(8, estaminaOffset, scrh*.958, scrw*.042, scrh*.034, Color(0,0,0,200))
@@ -138,10 +132,12 @@ if CLIENT then
                 end
             else
                 -- armor 
-                draw.RoundedBox(8, scrw*(.006 + offsetHidden), scrh*.958, scrw*.062, scrh*.034, Color(0,0,0,200))
-                draw.RoundedBox(8, scrw*(.006 + offsetHidden + 0.001), scrh*.96, armorbarchange, scrh*.031, ix.option.Get("armorColorThestral", Color(255,132,187)))
-                draw.SimpleText(armor, "jars_hud_indicators", scrw*(.006 + offsetHidden + 0.035),scrh*.975, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-                offsetHidden = offsetHidden + 0.063
+                if !ix.option.Get("hideArmorThestral") then
+                    draw.RoundedBox(8, scrw*(.006 + offsetHidden), scrh*.958, scrw*.062, scrh*.034, Color(0,0,0,200))
+                    draw.RoundedBox(8, scrw*(.006 + offsetHidden + 0.001), scrh*.96, armorbarchange, scrh*.031, ix.option.Get("armorColorThestral", Color(255,132,187)))
+                    draw.SimpleText(armor, "jars_hud_indicators", scrw*(.006 + offsetHidden + 0.035),scrh*.975, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                    offsetHidden = offsetHidden + 0.063
+                end
 
                 -- hunger
                 draw.RoundedBox(8, scrw*(.007 + offsetHidden), scrh*.958, scrw*.022, scrh*.034, Color(0,0,0,200))
@@ -157,15 +153,9 @@ if CLIENT then
                 local estaminaOffset = 0
                 local estaminaText = 0
                 local estaminaIcon = 0
-                if ix.option.Get("staminaDrainsThestralThestralThestral", false) then -- Check if user prefer the stamina bar on the right corner
-                    estaminaOffset = scrw - scrw*.050
-                    estaminaText = scrw - scrw*0.028
-                    estaminaIcon = estaminaOffset
-                else
-                    estaminaOffset = scrw*(.007 + offsetHidden)
-                    estaminaText = scrw*(.007 + offsetHidden + 0.028)
-                    estaminaIcon = scrw*(.007 + offsetHidden + 0.003)
-                end
+                estaminaOffset = scrw*(.007 + offsetHidden)
+                estaminaText = scrw*(.007 + offsetHidden + 0.028)
+                estaminaIcon = scrw*(.007 + offsetHidden + 0.003)
         
                 -- stamina 
                 draw.RoundedBox(8, estaminaOffset, scrh*.958, scrw*.042, scrh*.034, Color(0,0,0,200))
