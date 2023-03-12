@@ -5,11 +5,13 @@ PLUGIN.description = "Medical items that are affected by a medical attribute and
 local defaultPlayerHealth = 100
 
 function Schema:PlayerHurt(client, attacker, health)
+    local char = client:GetCharacter()
     if health <= 10 then
-        local char = client:GetCharacter()
         client:SetRagdolled(true, 30 - (char:GetAttribute("vitality") or 0))
-        char:UpdateAttrib("vitality", 1)
+        char:UpdateAttrib("vitality", .5)
         client:ChatNotify("Your vision darkens and causes you to fall out of consciousness.")
+    else
+        char:UpdateAttrib("vitality", .005)
     end
 end
 

@@ -12,7 +12,7 @@ if (SERVER) then
 
 	function PLUGIN:PlayerThrowPunch(client, trace)
 		if (client:GetCharacter() and IsValid(trace.Entity)) then
-			client:GetCharacter():UpdateAttrib("str", 0.1)
+			client:GetCharacter():UpdateAttrib("str", 0.025)
 		end
 	end
 end
