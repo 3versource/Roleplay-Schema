@@ -29,7 +29,7 @@ do
 	end
 
 	function COMMAND:OnCheckAccess(client)
-		return client:IsCombine() and (Schema:IsCombineRank(client:Name(), "SCN") or Schema:IsCombineRank(client:Name(), "OfC") or Schema:IsCombineRank(client:Name(), "EpU") or Schema:IsCombineRank(client:Name(), "DvL") or Schema:IsCombineRank(client:Name(), "SeC") or client:Team() == FACTION_OTA)
+		return client:IsCombine() and client:GetCharacter():GetClass() == 7
 	end
 
 	ix.command.Add("CameraDisable", COMMAND)
@@ -63,7 +63,7 @@ do
 	end
 
 	function COMMAND:OnCheckAccess(client)
-		return client:IsCombine() and (Schema:IsCombineRank(client:Name(), "SCN") or Schema:IsCombineRank(client:Name(), "OfC") or Schema:IsCombineRank(client:Name(), "EpU") or Schema:IsCombineRank(client:Name(), "DvL") or Schema:IsCombineRank(client:Name(), "SeC") or client:Team() == FACTION_OTA)
+		return client:IsCombine() and client:GetCharacter():GetClass() == 7 or client:Team() == FACTION_OTA
 	end
 
 	ix.command.Add("CameraEnable", COMMAND)
@@ -118,7 +118,8 @@ do
 	end
 
 	function COMMAND:OnCheckAccess(client)
-		return client:IsCombine() and (Schema:IsCombineRank(client:Name(), "SCN") or Schema:IsCombineRank(client:Name(), "OfC") or Schema:IsCombineRank(client:Name(), "EpU") or Schema:IsCombineRank(client:Name(), "DvL") or Schema:IsCombineRank(client:Name(), "SeC") or client:Team() == FACTION_OTA or client:IsCombine() and (Schema:IsCombineRank(client:Name(), "WATCHER")) or client:IsCombine() and (Schema:IsCombineRank(client:Name(), "SqL")))
+		-- High-Ranking CPs are #7 in the list.
+		return client:GetCharacter():GetClass() == 7
 	end
 
 	ix.command.Add("SetSocioStatus", COMMAND)
