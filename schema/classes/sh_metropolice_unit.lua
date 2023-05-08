@@ -3,17 +3,14 @@ CLASS.faction = FACTION_MPF
 
 function CLASS:CanSwitchTo(client)
 	local name = client:Name()
-	local bStatus = false
 
 	for k, v in ipairs({ "04", "03", "02", "01", "OfC" }) do
 		if (Schema:IsCombineRank(name, v)) then
-			bStatus = true
-
-			break
+			return true
 		end
 	end
 
-	return bStatus
+	return false
 end
 
 CLASS_MPU = CLASS.index
