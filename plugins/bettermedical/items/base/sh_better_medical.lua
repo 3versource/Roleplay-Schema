@@ -34,7 +34,7 @@ ITEM.functions.applyToTarget = {
 		local target = AimTargetValid(ply)
 
 		if target then
-			UpdateAttribute(target, ply)
+			UpdateAttribute(target, char)
 			HealTarget(target, item.recovery, char)
 			target:EmitSound(item.sound)
 			return true
