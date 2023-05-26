@@ -39,6 +39,11 @@ function Schema:PlayerHurt(client, attacker, health, damage)
 			Schema:AddCombineDisplayMessage("ALERT! Vital signs dropping for protection team unit " .. digits .. " at " .. location .. "...", Color(255, 255, 0, 255))
 		end
 	end
+
+    -- if the player is a paintaker,
+    if char:GetAttribute("paintaker", 0) ~= 0 then
+        client:RestoreStamina(char:GetAttribute("paintaker", 0))
+    end
 end
 
 -- update the player's maximum health
