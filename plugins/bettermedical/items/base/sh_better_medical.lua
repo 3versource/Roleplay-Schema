@@ -64,7 +64,7 @@ function AimTargetValid(ply)
 	data.filter = ply
 
 	local target = util.TraceLine(data).Entity
-
+	
 	if IsValid(target) and target:IsPlayer() and target:GetCharacter() then
 		return target
 	end

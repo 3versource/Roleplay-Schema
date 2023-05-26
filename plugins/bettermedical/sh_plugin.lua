@@ -63,3 +63,16 @@ function Schema:PlayerSpawn(client)
         UpdateMaxHealth(client, client:GetCharacter())
     end
 end
+
+function PLUGIN:PlayerPostThink(client)
+    if !client:Alive() or !client:GetCharacter() or !client:GetCharacter():GetData("adrenalineBoostTime", false) then return end
+
+    local time = CurTime()
+    local char  = client:GetCharacter()
+
+    if char:GetData("adrenalineBoostTime", 0) < CurTime() then
+        char:SetData("adrenalineBoostTime", false)
+        char:RemoveBoost(110, "stm")
+        char:RemoveBoost(111, "end")
+    end
+end
