@@ -1,5 +1,5 @@
 ITEM.name = "Civil Protection Bastion Uniform"
-ITEM.description = "A pair of heavy-duty kevlar pants."
+ITEM.description = "nodesc"
 ITEM.category = "Metropolice - Uniform"
 ITEM.model = "models/props_junk/garbage_bag001a.mdl"
 ITEM.playermodelBodygroupAndVariants = {0, 0, 1, 0, 2, 8, 3, 1, 4, 0, 5, 0, 6, 1, 7, 0}
@@ -8,7 +8,8 @@ ITEM.playermodel = "models/police.mdl"
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
 ITEM.mpf = "MPF-BASTION."
-ITEM.armor = 80
+ITEM.maxArmorHP = 100
+ITEM.limbs = {["head"] = .75, ["torso"] = .75, ["arms"] = .5, ["legs"] = .5}
 
 /*
 	forModel must be one of the following:
@@ -46,11 +47,3 @@ ITEM.armor = 80
 	tactical shit - 6
 	neck - 7
 */
-
-
-function ITEM:PopulateTooltip(tooltip)
-	local panel = tooltip:AddRowAfter("name", "armor")
-	panel:SetBackgroundColor(derma.GetColor("Warning", tooltip))
-	panel:SetText("Armor: " .. (self:GetData("equip") and LocalPlayer():Armor() or self:GetData("armor", self.armor)))
-	panel:SizeToContents()
-end

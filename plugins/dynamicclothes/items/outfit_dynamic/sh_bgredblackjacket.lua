@@ -6,6 +6,8 @@ ITEM.playermodelBodygroupAndVariants = {1, 16}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
+ITEM.maxArmorHP = 25
+ITEM.limbs = {["head"] = 0, ["torso"] = .15, ["arms"] = .1, ["legs"] = 0}
 
 /*
 	forModel must be one of the following:
