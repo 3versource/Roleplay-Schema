@@ -4,9 +4,9 @@ ITEM.model = "models/Gibs/HGIBS.mdl"
 ITEM.category = "Writables"
 ITEM.width = 1
 ITEM.height = 1
-ITEM.windowHeight = 800
-ITEM.windowWidth = 800
-ITEM.pages = 2
+ITEM.windowHeight = 600
+ITEM.windowWidth = 600
+ITEM.pages = 1
 
 function ITEM:PopulateTooltip(tooltip)
     if self:GetData("itemSigner") then
@@ -117,7 +117,7 @@ netstream.Hook("readingWritableItem", function(item, height, width, isEditable, 
     end
 
     frame.OnClose = function()
-        print("onclosed initiated")
+        -- print("onclosed initiated")
         if isEditable then
             -- In index 1 of scrollBar:GetChildren(), the panel itself is present.
             -- In index 2 of scrollbar:GetChildren(), the scroll bar itself is present.
