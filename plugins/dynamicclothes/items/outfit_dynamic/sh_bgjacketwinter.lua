@@ -1,12 +1,12 @@
-ITEM.name = "Red/Black Jacket"
-ITEM.description = "A red and black jacket."
+ITEM.name = "Heavy Coat"
+ITEM.description = "A dark heavy coat."
 ITEM.category = "Clothes - Torso"
 ITEM.model = "models/props_junk/cardboard_box004a.mdl"
-ITEM.playermodelBodygroupAndVariants = {1, 16}
+ITEM.playermodelBodygroupAndVariants = {1, 12}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.maxArmorHP = 25
+ITEM.maxArmorHP = 15
 ITEM.limbs = {["head"] = 0, ["torso"] = .15, ["arms"] = .1, ["legs"] = 0}
 
 /*

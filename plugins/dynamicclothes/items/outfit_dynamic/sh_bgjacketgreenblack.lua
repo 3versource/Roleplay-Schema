@@ -1,13 +1,13 @@
-ITEM.name = "Goggles"
-ITEM.description = "A pair of goggles."
-ITEM.category = "Clothes - Eyes"
-ITEM.model = "models/props_lab/box01a.mdl"
-ITEM.playermodelBodygroupAndVariants = {6, 2}
+ITEM.name = "Green/Black Jacket"
+ITEM.description = "A green and black jacket."
+ITEM.category = "Clothes - Torso"
+ITEM.model = "models/props_junk/cardboard_box004a.mdl"
+ITEM.playermodelBodygroupAndVariants = {1, 15}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.maxArmorHP = 100
-ITEM.limbs = {["head"] = .25, ["torso"] = 0, ["arms"] = 0, ["legs"] = 0}
+ITEM.maxArmorHP = 15
+ITEM.limbs = {["head"] = 0, ["torso"] = .15, ["arms"] = .1, ["legs"] = 0}
 
 /*
 	forModel must be one of the following:

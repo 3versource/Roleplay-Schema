@@ -1,13 +1,13 @@
-ITEM.name = "Resistance Shirt"
-ITEM.description = "A black combat shirt with a lambda armband."
-ITEM.category = "Clothes - Torso"
-ITEM.model = "models/props_junk/cardboard_box004a.mdl"
-ITEM.playermodelBodygroupAndVariants = {1, 17}
+ITEM.name = "Glasses"
+ITEM.description = "A pair of glasses."
+ITEM.category = "Clothes - Eyes"
+ITEM.model = "models/props_lab/box01a.mdl"
+ITEM.playermodelBodygroupAndVariants = {6, 1}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.maxArmorHP = 100
-ITEM.limbs = {["head"] = 0, ["torso"] = .5, ["arms"] = .4, ["legs"] = 0}
+ITEM.maxArmorHP = 2
+ITEM.limbs = {["head"] = .05, ["torso"] = 0, ["arms"] = 0, ["legs"] = 0}
 
 /*
 	forModel must be one of the following:

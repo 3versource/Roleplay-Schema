@@ -1,13 +1,13 @@
-ITEM.name = "Bandana"
-ITEM.description = "A red bandana."
-ITEM.category = "Clothes - Mask"
-ITEM.model = "models/props_lab/box01a.mdl"
-ITEM.playermodelBodygroupAndVariants = {10, 3}
+ITEM.name = "Overwatch Vest"
+ITEM.description = "A Union-branded vest ripped from an OTA uniform."
+ITEM.category = "Clothes - Torso Vest"
+ITEM.model = "models/props_junk/cardboard_box004a.mdl"
+ITEM.playermodelBodygroupAndVariants = {11, 3}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.maxArmorHP = 10
-ITEM.limbs = {["head"] = .05, ["torso"] = 0, ["arms"] = 0, ["legs"] = 0}
+ITEM.maxArmorHP = 30
+ITEM.limbs = {["head"] = .2, ["torso"] = .4, ["arms"] = .2, ["legs"] = .15}
 
 /*
 	forModel must be one of the following:

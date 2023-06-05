@@ -1,13 +1,13 @@
-ITEM.name = "Overwatch Vest"
-ITEM.description = "A UU-branded vest ripped from an OTA uniform."
-ITEM.category = "Clothes - Torso Vest"
-ITEM.model = "models/props_junk/cardboard_box004a.mdl"
-ITEM.playermodelBodygroupAndVariants = {11, 3}
+ITEM.name = "Respirator"
+ITEM.description = "A respirator mask."
+ITEM.category = "Clothes - Mask"
+ITEM.model = "models/props_lab/box01a.mdl"
+ITEM.playermodelBodygroupAndVariants = {10, 2}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.maxArmorHP = 100
-ITEM.limbs = {["head"] = .2, ["torso"] = .4, ["arms"] = .2, ["legs"] = .15}
+ITEM.maxArmorHP = 5
+ITEM.limbs = {["head"] = .1, ["torso"] = 0, ["arms"] = 0, ["legs"] = 0}
 
 /*
 	forModel must be one of the following:

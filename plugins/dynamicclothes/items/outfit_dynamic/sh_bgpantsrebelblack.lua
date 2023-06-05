@@ -1,13 +1,13 @@
-ITEM.name = "Vest"
-ITEM.description = "A kevlar vest."
-ITEM.category = "Clothes - Torso Vest"
-ITEM.model = "models/props_junk/cardboard_box004a.mdl"
-ITEM.playermodelBodygroupAndVariants = {11, 2}
+ITEM.name = "Black Pants"
+ITEM.description = "A pair of black pants that has been tucked under terrain boots."
+ITEM.category = "Clothes - Pants"
+ITEM.model = "models/props_junk/garbage_bag001a.mdl"
+ITEM.playermodelBodygroupAndVariants = {2, 9}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
-ITEM.maxArmorHP = 100
-ITEM.limbs = {["head"] = .05, ["torso"] = .25, ["arms"] = .1, ["legs"] = .1}
+ITEM.maxArmorHP = 10
+ITEM.limbs = {["head"] = 0, ["torso"] = 0, ["arms"] = 0, ["legs"] = .2}
 
 /*
 	forModel must be one of the following:

@@ -1,11 +1,13 @@
-ITEM.name = "Blue/White Jacket"
-ITEM.description = "A blue and white jacket."
-ITEM.category = "Clothes - Torso"
-ITEM.model = "models/props_junk/cardboard_box004a.mdl"
-ITEM.playermodelBodygroupAndVariants = {1, 14}
+ITEM.name = "Bandana"
+ITEM.description = "A red bandana."
+ITEM.category = "Clothes - Mask"
+ITEM.model = "models/props_lab/box01a.mdl"
+ITEM.playermodelBodygroupAndVariants = {10, 3}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
+ITEM.maxArmorHP = 5
+ITEM.limbs = {["head"] = .05, ["torso"] = 0, ["arms"] = 0, ["legs"] = 0}
 
 /*
 	forModel must be one of the following:

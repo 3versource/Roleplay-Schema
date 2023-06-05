@@ -1,14 +1,13 @@
-ITEM.name = "Heavy Kevlar Pants"
-ITEM.description = "A pair of heavy-duty kevlar pants."
-ITEM.category = "Clothes - Pants"
-ITEM.model = "models/props_junk/garbage_bag001a.mdl"
-ITEM.playermodelBodygroupAndVariants = {2, 12}
+ITEM.name = "Resistance Shirt"
+ITEM.description = "A black combat shirt with a lambda armband."
+ITEM.category = "Clothes - Torso"
+ITEM.model = "models/props_junk/cardboard_box004a.mdl"
+ITEM.playermodelBodygroupAndVariants = {1, 17}
 ITEM.playermodelBodygroupChanges = 1
 ITEM.isClothingItem = true
 ITEM.forModel = "models/ug/new/citizens"
 ITEM.maxArmorHP = 100
-ITEM.limbs = {["head"] = 0, ["torso"] = 0, ["arms"] = 0, ["legs"] = .5}
-
+ITEM.limbs = {["head"] = 0, ["torso"] = .4, ["arms"] = .35, ["legs"] = 0}
 
 /*
 	forModel must be one of the following:
