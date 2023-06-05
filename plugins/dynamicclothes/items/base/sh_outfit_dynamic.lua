@@ -47,6 +47,7 @@ ITEM.isClothingItem = true
 ITEM.maxArmorHP = 0 -- the amount of hits an armor item has before its bonus goes away
 -- these values need to be from 0 to 1. these represent the percentage of damage negated on a certain limb (if ["head"] = .1, then the player takes 10% less damage on the head)
 ITEM.limbs = {["head"] = 0, ["torso"] = 0, ["arms"] = 0, ["legs"] = 0}
+ITEM.brokensfx = "doors/vent_open1.wav"
 
 -- draws the small square on an item when the item is equipped
 if (CLIENT) then
@@ -304,8 +305,10 @@ function ITEM:Damage(amount)
 		newHealth = self:GetData("health", self.maxArmorHP) - amount
 		self:SetData("health", math.Clamp(newHealth, 0, self.maxArmorHP))
 		if newHealth == 0 then
+			ply = self:GetOwner()
 			self:RemoveBonus(self:GetOwner():GetCharacter(), self.limbs)
-			self:GetOwner():ChatNotify("Your " .. string.lower(self.name) .. " has broken!")
+			ply:ChatNotify("Your " .. string.lower(self.name) .. " has broken!")
+			ply:EmitSound(self.brokensfx, 120)
 		end
 	end
 end

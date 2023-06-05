@@ -3,7 +3,6 @@ ITEM.description = "A piece of cold steel."
 ITEM.model = "models/weapons/w_crowbar.mdl"
 ITEM.class = "weapon_crowbar"
 ITEM.weaponCategory = "melee"
-ITEM.flag = "m"
 ITEM.width = 2
 ITEM.height = 1
 ITEM.iconCam = {
