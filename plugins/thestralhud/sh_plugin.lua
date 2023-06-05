@@ -1,7 +1,7 @@
 local PLUGIN = PLUGIN
 PLUGIN.name = "Thestral HUD"
-PLUGIN.author = "Jars and OctraSource"
-PLUGIN.description = "A simple HUD that displays the player's health, armor, stamina, hunger, and thirst."
+PLUGIN.author = "Jars"
+PLUGIN.description = "A simple HUD that displays the player's health, armor, stamina, hunger, and thirst. Modified by OctraSource"
 
 ix.option.Add("hideThestral", ix.type.bool, false, {
 	category = "Thestral HUD"
