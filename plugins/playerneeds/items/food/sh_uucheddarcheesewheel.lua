@@ -1,5 +1,5 @@
 ITEM.name = "UU Cheddar Cheese Wheel"
-ITEM.description = "A wheel of UU-branded cheddar cheese."
+ITEM.description = "A wheel of Union-branded cheddar cheese."
 ITEM.model = "models/bioshockinfinite/pound_cheese.mdl"
 ITEM.category = "Food"
 

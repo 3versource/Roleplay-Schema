@@ -1,5 +1,5 @@
 ITEM.name = "UU Potato"
-ITEM.description = "A round UU-branded potato."
+ITEM.description = "A round Union-branded potato."
 ITEM.model = "models/bioshockinfinite/hext_potato.mdl"
 ITEM.category = "Food"
 

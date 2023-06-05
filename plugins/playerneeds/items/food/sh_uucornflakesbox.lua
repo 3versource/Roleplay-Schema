@@ -1,5 +1,5 @@
 ITEM.name = "UU Cornflakes"
-ITEM.description = "A box of UU-branded cornflakes."
+ITEM.description = "A box of Union-branded cornflakes."
 ITEM.model = "models/bioshockinfinite/hext_cereal_box_cornflakes.mdl"
 ITEM.category = "Food"
 

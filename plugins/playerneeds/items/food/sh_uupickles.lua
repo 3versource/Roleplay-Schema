@@ -1,5 +1,5 @@
 ITEM.name = "UU Pickles"
-ITEM.description = "A jar of UU-branded pickles."
+ITEM.description = "A jar of Union-branded pickles."
 ITEM.model = "models/bioshockinfinite/dickle_jar.mdl"
 ITEM.category = "Food"
 

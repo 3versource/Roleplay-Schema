@@ -1,5 +1,5 @@
 ITEM.name = "UU Popcorn"
-ITEM.description = "A bag of UU-branded popcorn."
+ITEM.description = "A bag of Union-branded popcorn."
 ITEM.model = "models/bioshockinfinite/topcorn_bag.mdl"
 ITEM.category = "Food"
 

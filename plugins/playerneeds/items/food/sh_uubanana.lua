@@ -1,5 +1,5 @@
 ITEM.name = "UU Banana"
-ITEM.description = "A yellow UU-branded banana."
+ITEM.description = "A Union-branded banana."
 ITEM.model = "models/bioshockinfinite/hext_banana.mdl"
 ITEM.category = "Food"
 

@@ -1,5 +1,5 @@
 ITEM.name = "UU Coffee"
-ITEM.description = "A capsule of UU-branded coffee."
+ITEM.description = "A capsule of Union-branded coffee."
 ITEM.model = "models/bioshockinfinite/xoffee_mug_closed.mdl"
 ITEM.category = "Drink"
 

@@ -1,5 +1,5 @@
 ITEM.name = "UU Chocolate"
-ITEM.description = "A bar of UU-branded chocolate. It still doesn't have a ticket."
+ITEM.description = "A bar of Union-branded semi-sweet chocolate."
 ITEM.model = "models/bioshockinfinite/hext_candy_chocolate.mdl"
 ITEM.category = "Food"
 

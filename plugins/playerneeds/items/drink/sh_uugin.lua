@@ -1,5 +1,5 @@
 ITEM.name = "UU Gin"
-ITEM.description = "A UU-branded bottle of gin."
+ITEM.description = "A Union-branded bottle of gin."
 ITEM.model = "models/bioshockinfinite/jin_bottle.mdl"
 ITEM.category = "Drink"
 
