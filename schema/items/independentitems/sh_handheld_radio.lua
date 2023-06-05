@@ -2,8 +2,6 @@
 ITEM.name = "Handheld Radio"
 ITEM.model = Model("models/ug_imports/radio/w_radio.mdl")
 ITEM.description = "A shiny handheld radio with a frequency tuner.\nIt is currently turned %s%s."
-ITEM.classes = {CLASS_EMP, CLASS_EOW}
-ITEM.flag = "v"
 ITEM.category = "Tools"
 
 -- Inventory drawing
