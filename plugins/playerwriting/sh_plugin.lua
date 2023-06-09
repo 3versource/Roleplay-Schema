@@ -1,8 +1,10 @@
+local PLUGIN = PLUGIN
+
 PLUGIN.name = "Writables"
 PLUGIN.author = "OctraSource"
 PLUGIN.description = "A plugin that adds items that players can write onto."
 
-hook.Add("PlayerLoadedCharacter", "cleanReadingStatuses", function(client, character)
-	-- all characters can initially read
-	character:SetData("canRead", true)
-end)
+ix.util.Include("cl_hooks.lua")
+ix.util.Include("sv_hooks.lua")
+
+-- full list of helix-defined hooks: https://docs.gethelix.co/hooks/plugin/

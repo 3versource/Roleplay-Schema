@@ -8,6 +8,15 @@ ITEM.windowHeight = 600
 ITEM.windowWidth = 600
 ITEM.pages = 1
 
+
+--[[
+    ITEM:PopulateToolTip(tooltip)
+        ITEM : specifying that this is a function of an item
+            ITEM:PopulateToolTip(tooltip)
+                tooltip : helix-defined. the specific tooltip in question
+
+            This makes a popup on an item whenever you hover over it. This is helix-defined.
+]]
 function ITEM:PopulateTooltip(tooltip)
     if self:GetData("itemSigner") then
         local panel = tooltip:AddRowAfter("name", "portions")
@@ -18,6 +27,41 @@ function ITEM:PopulateTooltip(tooltip)
 end	
 
 
+--[[
+    ITEM:IsInPlayerInventory()
+        ITEM : specifying that this is a function of an item
+            ITEM:IsInPlayerInventory()
+            
+            A function I made that checks if the item in question is on the ground and if it's in the player who's running the item's function's inventory.
+]]
+function ITEM:IsInPlayerInventory()
+    -- if self.entity exists, then the physical model representing this item is somewhere in the world.
+    -- if self.player is not equal to self:GetOwner(), then the item is not in the player who is running this item's function's inventory.
+    return !IsValid(self.entity) and self.player == self:GetOwner()
+end
+
+
+--[[
+    ITEM : specifying that this is a property (variable) of an item
+        ITEM.functions : helix-defined property that stores functions of the item ITEM
+            ITEM.functions.Read : a function that is meant to pop up a derma menu consisting of text boxes representing the "pages" of a writable item.
+                name : helix-defined. the name that appears on the dropdown list to run this function
+                icon : helix-defined. the icon that appears next to the name. full list of icons can be found at https://heyter.github.io/js-famfamfam-search/
+                OnRun : helix-defined. a variable that stores a function that runs whenever the dropdown menu option is clicked by the player.
+                    OnRun = function(item)
+                        item : helix-defined. the item that is currently running this function.
+                        
+                    if this is returned as true, then the item deletes itself after running the function.
+                    if returned false, then the item doesn't delete itself from the player's inventory.
+                OnCanRun : helix-defined. a variable that stores a function that is intended to be used as a conditional statement on whether or not the player should
+                            be able to run the function OnRun.
+                    OnCanRun = function(item)
+                        item : helix-defined. the item that is currently running this function.
+                        
+                    if returned as true, then the player will be able to see this function of the item in the dropdown menu.
+                    if returned as false, then the player won't be able to run the function of this item.
+    
+]]
 ITEM.functions.Read = {
     name = "Read",
     icon = "icon16/zoom.png",
@@ -25,25 +69,47 @@ ITEM.functions.Read = {
         local canEdit = true
 
         -- if there's a signer to this item or the item is on the ground, then it can't be edited
-        if item:GetData("itemSigner", false) or item.player ~= item:GetOwner() then
+        if item:GetData("itemSigner", false) or not(item:IsInPlayerInventory()) then
             canEdit = false
         end
 
+        -- tell the server to initiate a client-side derma menu
         netstream.Start(item.player, "readingWritableItem", 
                         item:GetID(), item.windowHeight, 
                         item.windowWidth, canEdit, 
                         item:GetData("previousPages", {}), 
                         item.pages) 
-        
-        item.player:GetCharacter():SetData("canRead", false)
+
         return false
     end,
     OnCanRun = function(item)
-        -- players can read this whenever they want as long as they aren't reading something else (editing priviledges vary, however)
-        return item.player:GetCharacter():GetData("canRead", true)
+        -- players can always read a readable item
+        return true
     end
 }
 
+
+--[[
+    ITEM : specifying that this is a property (variable) of an item
+        ITEM.functions : helix-defined property that stores functions of the item ITEM
+            ITEM.functions.Sign : a function that is meant to prevent the writable item from further edits.
+                name : helix-defined. the name that appears on the dropdown list to run this function
+                icon : helix-defined. the icon that appears next to the name. full list of icons can be found at https://heyter.github.io/js-famfamfam-search/
+                OnRun : helix-defined. a variable that stores a function that runs whenever the dropdown menu option is clicked by the player.
+                    OnRun = function(item)
+                        item : helix-defined. the item that is currently running this function.
+                        
+                    if this is returned as true, then the item deletes itself after running the function.
+                    if returned false, then the item doesn't delete itself from the player's inventory.
+                OnCanRun : helix-defined. a variable that stores a function that is intended to be used as a conditional statement on whether or not the player should
+                            be able to run the function OnRun.
+                    OnCanRun = function(item)
+                        item : helix-defined. the item that is currently running this function.
+                        
+                    if returned as true, then the player will be able to see this function of the item in the dropdown menu.
+                    if returned as false, then the player won't be able to run the function of this item.
+    
+]]
 ITEM.functions.Sign = {
     name = "Sign",
     icon = "icon16/accept.png",
@@ -52,17 +118,37 @@ ITEM.functions.Sign = {
         return false
     end,
     OnCanRun = function(item)
-        -- if the player can't read or the item isn't in the player's inventory, then don't sign
-        if not(item.player:GetCharacter():GetData("canRead", true)) or item.player ~= item:GetOwner() then
-            return false
-        -- if there is no signer, then you can sign this
-        elseif item:GetData("itemSigner", nil) == nil then
+        -- if the item is in the player's inventory AND there is no signer, then you can sign this
+        if item:IsInPlayerInventory() and item:GetData("itemSigner", nil) == nil then
             return true
         end
+
         return false
     end
 }
 
+
+--[[
+    ITEM : specifying that this is a property (variable) of an item
+        ITEM.functions : helix-defined property that stores functions of the item ITEM
+            ITEM.functions.Unsign : a function that is meant to allow edits on an item that has been signed. can only be done by the player who signed this item.
+                name : helix-defined. the name that appears on the dropdown list to run this function
+                icon : helix-defined. the icon that appears next to the name. full list of icons can be found at https://heyter.github.io/js-famfamfam-search/
+                OnRun : helix-defined. a variable that stores a function that runs whenever the dropdown menu option is clicked by the player.
+                    OnRun = function(item)
+                        item : helix-defined. the item that is currently running this function.
+                        
+                    if this is returned as true, then the item deletes itself after running the function.
+                    if returned false, then the item doesn't delete itself from the player's inventory.
+                OnCanRun : helix-defined. a variable that stores a function that is intended to be used as a conditional statement on whether or not the player should
+                            be able to run the function OnRun.
+                    OnCanRun = function(item)
+                        item : helix-defined. the item that is currently running this function.
+                        
+                    if returned as true, then the player will be able to see this function of the item in the dropdown menu.
+                    if returned as false, then the player won't be able to run the function of this item.
+    
+]]
 ITEM.functions.Unsign = {
     name = "Unsign",
     icon = "icon16/cancel.png",
@@ -73,103 +159,11 @@ ITEM.functions.Unsign = {
         return false
     end,
     OnCanRun = function(item)
-        -- if the player can't read or the item isn't in the player's inventory, return false
-        if not(item.player:GetCharacter():GetData("canRead", true)) or item.player ~= item:GetOwner() then
-            return false
-        -- if there is a signer and that signer is the current player with this item, then you can unsign this
-        elseif item:GetData("itemSigner", nil) == item.player:GetCharacter():GetID() then
+        -- if the item is in the player's inventory AND there is a signer and that signer is the current player with this item, then you can unsign this
+        if item:IsInPlayerInventory() and item:GetData("itemSigner", nil) == item.player:GetCharacter():GetID() then
             return true
         end
+
         return false
     end
 }
-
--- netstream allows us to communicate from server to the client or client to server, very useful
-netstream.Hook("readingWritableItem", function(item, height, width, isEditable, pastText, pages)
-    -- serverside variables, such as item.var or item:getdata() won't work here since this is clientside ONLY!
-
-    local frame = vgui.Create("DFrame") -- create the derma frame
-    frame:SetTitle("") -- the name of the derma frame that pops up onto yours screen
-    frame:SetSize( ScrW() * (width/1920), ScrH() * (height/1080) ) -- width, height
-    frame:Center() -- place the frame in the center of the user's screen
-    frame:SetDrawOnTop(true)
-
-    local scrollBar = vgui.Create("DScrollPanel", frame)
-    scrollBar:Dock(FILL)
-
-    for i = 1, pages do
-        local textBox = scrollBar:Add("DTextEntry")
-        -- print("received text '"..tostring(pastText[i]).."' at index "..tostring(i))
-        textBox:Dock(TOP)
-        textBox:DockMargin(0,0,0,5)
-        -- width position, height position
-        textBox:SetSize(width, height)
-        textBox:SetMultiline(true)
-        textBox:SetEditable(isEditable)
-
-        if pastText[i] then
-            textBox:SetText(pastText[i])
-        else
-            textBox:SetText("")
-        end
-
-        textBox:SetPlaceholderText("Page "..i)
-    end
-
-    frame.OnClose = function()
-        -- print("onclosed initiated")
-        if isEditable then
-            -- In index 1 of scrollBar:GetChildren(), the panel itself is present.
-            -- In index 2 of scrollbar:GetChildren(), the scroll bar itself is present.
-
-            -- The panel in index 1 has children of its own, which is where the text boxes are stored.
-            --     This means that doing,
-            --         scrollBar:GetChildren[1]:GetChildren()
-            --     will return a text entry box.
-            
-            local panelChildren = scrollBar:GetChildren()[1]:GetChildren()
-            local pagesWithText = {}
-
-            for i = 1, pages do
-                local text = panelChildren[i]:GetValue()
-                -- print("current text is "..tostring(panelChildren[i]:GetValue()))
-                -- print("iteration is "..i)
-
-                -- searches for a number after the word "Page"
-                local textPage = tonumber(string.match(panelChildren[i]:GetPlaceholderText(), "Page%s*(%S+)"))
-                -- print("current text page is "..tostring(textPage))
-
-                pagesWithText[textPage] = text
-            end
-
-            netstream.Start("addWritableEdit", item, pagesWithText)
-
-        end
-
-        netstream.Start("setPlayerNotReading")
-
-        frame:Remove()
-    end
-
-    frame:SetVisible(true)
-    frame:MakePopup() -- the derma frame shows up on your screen
-    frame:DoModal(true) -- forces to only have focus on this window. players can't interact with the helix menu or the gmod menu. quite powerful and dangerous, no?
-end)    
-
--- serverside
-netstream.Hook("addWritableEdit", function(client, itemID, list)
-    local item = ix.item.instances[itemID]
-
-    -- save the previous pages
-    item:SetData("previousPages", list)
-
-    -- print("edits saved")
-end)
-
--- serverside
-netstream.Hook("setPlayerNotReading", function(client)
-    -- state that the character is now able to read other things
-    client:GetCharacter():SetData("canRead", true)
-
-    -- print("player can read")
-end)
